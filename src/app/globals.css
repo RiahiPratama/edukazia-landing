@@ -390,6 +390,34 @@ a:focus-visible {
     font-size: 13px !important;
     margin-top: 6px !important;
   }
+
+  /* ClassTypes cards — LOCK horizontal di mobile (no stack) + smaller badge */
+  .classtype-card-row {
+    flex-direction: row !important;
+  }
+  .classtype-ratio-panel {
+    width: 76px !important;
+    padding: 12px 8px !important;
+  }
+  .classtype-card-row[style*="2px solid"] .classtype-ratio-panel {
+    /* Recommended card — slightly wider badge */
+    width: 84px !important;
+  }
+  .classtype-ratio-num {
+    font-size: 22px !important;
+  }
+  .classtype-content {
+    padding: 12px 14px !important;
+  }
+  .classtype-content h3 {
+    font-size: 15px !important;
+    margin-bottom: 3px !important;
+  }
+  .classtype-content p {
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+    margin-bottom: 8px !important;
+  }
 }
 
 /* DESKTOP — >= 769px */

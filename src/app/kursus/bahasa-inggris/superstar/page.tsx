@@ -41,6 +41,57 @@ function Star({size=16,color="#E6B800",style={}}){return <svg width={size} heigh
 // Modern SVG Icons
 function AvatarFace({gender="girl",color,size=56}){return <svg width={size} height={size} viewBox="0 0 56 56"><circle cx="28" cy="28" r="26" fill={color} opacity="0.12"/><circle cx="28" cy="24" r="14" fill="#FFD6A5"/>{gender==="girl"?<><path d="M14 20c0-10 28-10 28 0v2c-4-6-24-6-28 0v-2z" fill={color} opacity="0.7"/><circle cx="16" cy="26" r="3" fill={color} opacity="0.4"/><circle cx="40" cy="26" r="3" fill={color} opacity="0.4"/></>:<path d="M14 18c0-8 28-8 28 0v4c-2-8-26-8-28 0v-4z" fill={color} opacity="0.6"/>}<circle cx="23" cy="23" r="1.5" fill="#1A1535"/><circle cx="33" cy="23" r="1.5" fill="#1A1535"/><path d="M24 28q4 3 8 0" stroke="#1A1535" strokeWidth="1.2" fill="none" strokeLinecap="round"/><rect x="18" y="38" width="20" height="14" rx="6" fill={color} opacity="0.3"/></svg>;}
 
+// KidAvatar — 8 unique cartoon variants for KidsBubbles (hair-style based)
+function KidAvatar({variant=0,size=32,bgColor="#E0E7FF"}){
+  const v = variant % 8;
+  // Hair colors per variant — varied tones for diversity
+  const hairColors = ["#7C2D55","#1E3A8A","#3F1A2A","#1F1F1F","#3B2A6B","#7C5512","#1F4730","#1E3A8A"];
+  const hc = hairColors[v];
+  const skin = "#FFD6A5";
+  const eye = "#1A1535";
+
+  // Different hair element per variant
+  const hair = (() => {
+    switch(v){
+      case 0: // Girl with hijab (covers entire head + neck)
+        return <path d="M6 18 Q6 6 20 6 Q34 6 34 18 L34 30 Q34 34 30 34 L10 34 Q6 34 6 30 Z" fill={hc}/>;
+      case 1: // Boy with baseball cap
+        return <><path d="M5 14 Q5 7 20 7 Q35 7 35 14 Q35 16 20 16 Q5 16 5 14 Z" fill={hc}/><rect x="13" y="5" width="14" height="3" rx="1.5" fill={hc}/><path d="M5 14 L0 14 L0 16 L5 16 Z" fill={hc}/></>;
+      case 2: // Girl with twin pigtails
+        return <><circle cx="8" cy="20" r="5" fill={hc}/><circle cx="32" cy="20" r="5" fill={hc}/><path d="M7 17 Q7 7 20 7 Q33 7 33 17" fill={hc}/></>;
+      case 3: // Boy with curly afro
+        return <><circle cx="11" cy="12" r="4" fill={hc}/><circle cx="20" cy="8" r="4.5" fill={hc}/><circle cx="29" cy="12" r="4" fill={hc}/><circle cx="14" cy="16" r="3.5" fill={hc}/><circle cx="26" cy="16" r="3.5" fill={hc}/></>;
+      case 4: // Girl with high bun
+        return <><circle cx="20" cy="5" r="3.5" fill={hc}/><rect x="18.5" y="6.5" width="3" height="3" fill={hc}/><path d="M8 16 Q8 8 20 8 Q32 8 32 16 Q32 18 20 18 Q8 18 8 16 Z" fill={hc}/></>;
+      case 5: // Boy with messy spike
+        return <path d="M7 16 L10 7 L13 14 L16 5 L20 13 L24 6 L27 14 L30 8 L33 16 Q33 18 20 18 Q7 18 7 16 Z" fill={hc}/>;
+      case 6: // Girl with bob cut
+        return <path d="M6 16 Q6 6 20 6 Q34 6 34 16 L34 26 L26 24 L25 17 L15 17 L14 24 L6 26 Z" fill={hc}/>;
+      case 7: // Boy with side-part + glasses
+        return <><path d="M6 14 Q6 6 20 6 Q34 6 34 14 L31 17 L26 11 L20 14 L14 11 L9 17 Z" fill={hc}/></>;
+      default:
+        return null;
+    }
+  })();
+
+  // Glasses overlay (only for variant 7)
+  const glasses = v===7 ? <>
+    <circle cx="15" cy="22" r="3.2" stroke={hc} strokeWidth="1.4" fill="none"/>
+    <circle cx="25" cy="22" r="3.2" stroke={hc} strokeWidth="1.4" fill="none"/>
+    <line x1="18.2" y1="22" x2="21.8" y2="22" stroke={hc} strokeWidth="1.4"/>
+  </> : null;
+
+  return <svg width={size} height={size} viewBox="0 0 40 40" style={{display:"block"}}>
+    <circle cx="20" cy="20" r="20" fill={bgColor}/>
+    {hair}
+    <circle cx="20" cy="23" r="9" fill={skin}/>
+    <circle cx="16" cy="22" r="1.3" fill={eye}/>
+    <circle cx="24" cy="22" r="1.3" fill={eye}/>
+    <path d="M17 26 Q20 28.5 23 26" stroke={eye} strokeWidth="1.2" fill="none" strokeLinecap="round"/>
+    {glasses}
+  </svg>;
+}
+
 const animations = `
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Nunito:wght@900&display=swap');
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -63,6 +114,8 @@ html{scroll-behavior:smooth}body{overflow-x:hidden;-webkit-font-smoothing:antial
   .hero-right{display:none!important}.story-flex{flex-direction:column!important}
 }
 @media(min-width:769px){.mobile-menu-btn{display:none!important}}
+@keyframes bubblePopIn{0%{opacity:0;transform:scale(0.7) translateY(8px)}60%{transform:scale(1.04) translateY(0)}100%{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes typingDot{0%,60%,100%{opacity:0.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
 `;
 
 // ═══════ NAV ═══════
@@ -235,11 +288,10 @@ function KidsBubbles(){
             display:"flex",alignItems:"center",gap:6,
             flexDirection:photoLeft?"row":"row-reverse",
             transform:`rotate(${b.rot}deg)`,
-            animation:`float ${4+i*0.5}s ease-in-out infinite`,
-            animationDelay:`${i*0.3}s`,
+            animation:`bubblePopIn 0.5s cubic-bezier(0.34,1.56,0.64,1) ${0.15*i}s both, float ${4+i*0.5}s ease-in-out ${0.15*i + 0.5}s infinite`,
           }}>
-            <div style={{width:28,height:28,borderRadius:"50%",background:`${photoColors[i]}20`,border:`2px solid ${photoColors[i]}40`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,overflow:"hidden"}}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill={photoColors[i]} opacity="0.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
+            <div style={{flexShrink:0,borderRadius:"50%",overflow:"hidden",boxShadow:`0 2px 8px ${photoColors[i]}30`}}>
+              <KidAvatar variant={i} size={32} bgColor={`${photoColors[i]}25`}/>
             </div>
             <div style={{
               background:t.m==="dark"?`${b.tc}15`:b.c,
@@ -255,15 +307,17 @@ function KidsBubbles(){
       </div>
     </Rv>
 
-    {/* MOBILE — Chat-style alternating left/right stack */}
-    <div className="bubbles-mobile" style={{maxWidth:480,margin:"0 auto",display:"flex",flexDirection:"column",gap:18,padding:"0 8px"}}>
+    {/* MOBILE — Chat-style alternating left/right stack with pop-in reveal */}
+    <div className="bubbles-mobile" style={{maxWidth:480,margin:"0 auto",display:"flex",flexDirection:"column",gap:16,padding:"0 8px"}}>
       {bubbles.map((b,i)=>{
         const isLeft = i%2===0;
-        return <Rv key={i} delay={0.05*i}>
-          <div style={{display:"flex",justifyContent:isLeft?"flex-start":"flex-end",width:"100%"}}>
+        return <div key={i} style={{
+          display:"flex",justifyContent:isLeft?"flex-start":"flex-end",width:"100%",
+          animation:`bubblePopIn 0.5s cubic-bezier(0.34,1.56,0.64,1) ${0.15*i}s both`,
+        }}>
             <div style={{display:"flex",alignItems:"center",gap:8,flexDirection:isLeft?"row":"row-reverse",maxWidth:"85%"}}>
-              <div style={{width:32,height:32,borderRadius:"50%",background:`${photoColors[i]}20`,border:`2px solid ${photoColors[i]}40`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,overflow:"hidden"}}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill={photoColors[i]} opacity="0.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
+              <div style={{flexShrink:0,borderRadius:"50%",overflow:"hidden",boxShadow:`0 2px 8px ${photoColors[i]}30`}}>
+                <KidAvatar variant={i} size={36} bgColor={`${photoColors[i]}25`}/>
               </div>
               <div style={{
                 background:t.m==="dark"?`${b.tc}15`:b.c,
@@ -275,9 +329,25 @@ function KidsBubbles(){
                 <span style={{fontFamily:fb,fontSize:13,fontWeight:700,color:b.tc,lineHeight:1.4,whiteSpace:"nowrap"}}>{b.text}</span>
               </div>
             </div>
-          </div>
-        </Rv>;
+          </div>;
       })}
+
+      {/* Typing indicator — fakes "more coming" feel */}
+      <div style={{
+        display:"flex",justifyContent:"flex-start",width:"100%",
+        animation:`bubblePopIn 0.5s cubic-bezier(0.34,1.56,0.64,1) ${0.15*bubbles.length}s both`,
+      }}>
+        <div style={{display:"flex",alignItems:"center",gap:8}}>
+          <div style={{width:36,height:36,borderRadius:"50%",background:`${t.p}15`,opacity:0.5,flexShrink:0}}/>
+          <div style={{background:t.m==="dark"?"rgba(255,255,255,0.04)":"#F4F4F8",borderRadius:"18px 18px 18px 6px",padding:"12px 18px"}}>
+            <div style={{display:"flex",gap:5,alignItems:"center"}}>
+              <div style={{width:7,height:7,borderRadius:"50%",background:t.mu,animation:"typingDot 1.4s ease-in-out infinite",animationDelay:"0s"}}/>
+              <div style={{width:7,height:7,borderRadius:"50%",background:t.mu,animation:"typingDot 1.4s ease-in-out infinite",animationDelay:"0.2s"}}/>
+              <div style={{width:7,height:7,borderRadius:"50%",background:t.mu,animation:"typingDot 1.4s ease-in-out infinite",animationDelay:"0.4s"}}/>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </W></section>;
 }
@@ -661,23 +731,15 @@ function ClassTypes(){
     </div></Rv>
     <div style={{display:"flex",flexDirection:"column",gap:12,maxWidth:800,margin:"0 auto"}}>
       {classes.map((c,i)=>{const[h,setH]=useState(false);return <Rv key={i} delay={0.06*(i+1)}>
-        <div onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)} style={{background:t.card,borderRadius:18,overflow:"hidden",border:c.rec?`2px solid ${c.c}35`:`1.5px solid ${h?c.c+"25":t.cb}`,boxShadow:c.rec?`0 6px 30px ${c.c}10`:h?t.ch:t.cs,transition:"all 0.35s",transform:h?"translateX(4px)":"none",display:"flex"}} className="story-flex">
-          <div style={{width:c.rec?110:90,flexShrink:0,background:c.rec?`linear-gradient(180deg,${c.c},${c.c}BB)`:`linear-gradient(180deg,${c.c}20,${c.c}08)`,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"20px 12px"}}>
+        <div onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)} style={{background:t.card,borderRadius:18,overflow:"hidden",border:c.rec?`2px solid ${c.c}35`:`1.5px solid ${h?c.c+"25":t.cb}`,boxShadow:c.rec?`0 6px 30px ${c.c}10`:h?t.ch:t.cs,transition:"all 0.35s",transform:h?"translateX(4px)":"none",display:"flex"}} className="classtype-card-row">
+          <div className="classtype-ratio-panel" style={{width:c.rec?110:90,flexShrink:0,background:c.rec?`linear-gradient(180deg,${c.c},${c.c}BB)`:`linear-gradient(180deg,${c.c}20,${c.c}08)`,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"20px 12px"}}>
             {c.rec&&<div style={{fontFamily:fb,fontSize:7,fontWeight:700,color:"#fff",background:"rgba(255,255,255,0.2)",padding:"2px 8px",borderRadius:100,marginBottom:8,textTransform:"uppercase",letterSpacing:0.5}}>Rekomendasi</div>}
-            <div style={{fontFamily:fh,fontSize:26,fontWeight:800,color:c.rec?"#fff":c.c,lineHeight:1}}>{c.ratio}</div>
+            <div className="classtype-ratio-num" style={{fontFamily:fh,fontSize:26,fontWeight:800,color:c.rec?"#fff":c.c,lineHeight:1}}>{c.ratio}</div>
             <div style={{fontFamily:fb,fontSize:7,color:c.rec?"rgba(255,255,255,0.5)":t.mu,marginTop:3}}>tutor : siswa</div>
           </div>
-          <div style={{flex:1,padding:"18px 22px",display:"flex",flexDirection:"column",justifyContent:"center"}}>
+          <div className="classtype-content" style={{flex:1,padding:"18px 22px",display:"flex",flexDirection:"column",justifyContent:"center",minWidth:0}}>
             <h3 style={{fontFamily:fh,fontSize:c.rec?19:16,fontWeight:800,color:t.tx,margin:"0 0 4px"}}>{c.name}</h3>
-            <p style={{fontFamily:fb,fontSize:13,color:t.sub,lineHeight:1.6,margin:"0 0 10px"}}>{c.desc}</p>
-            {/* Availability per phase */}
-            <div style={{display:"flex",gap:6,marginBottom:8,flexWrap:"wrap"}}>
-              {["Phonemic Aw.","Phonics","Speaking"].map((phase,pi)=>
-                <div key={pi} style={{fontFamily:fb,fontSize:9,fontWeight:600,color:c.avail[pi]==="✓"?t.g:t.mu,background:c.avail[pi]==="✓"?`${t.g}08`:`${t.mu}08`,padding:"3px 8px",borderRadius:5,border:`1px solid ${c.avail[pi]==="✓"?t.g+"15":t.mu+"10"}`,display:"flex",alignItems:"center",gap:3}}>
-                  <span style={{fontSize:8}}>{c.avail[pi]==="✓"?"✓":"✗"}</span> {phase}
-                </div>
-              )}
-            </div>
+            <p style={{fontFamily:fb,fontSize:13,color:t.sub,lineHeight:1.5,margin:"0 0 10px"}}>{c.desc}</p>
             <div style={{display:"flex",flexWrap:"wrap",gap:5}}>{c.tags.map(tg=><span key={tg} style={{fontFamily:fb,fontSize:10,fontWeight:600,color:c.c,background:`${c.c}08`,padding:"3px 10px",borderRadius:6,border:`1px solid ${c.c}10`}}>{tg}</span>)}</div>
           </div>
         </div>
