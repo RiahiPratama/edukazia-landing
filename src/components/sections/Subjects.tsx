@@ -378,7 +378,7 @@ function EnglishSuperstarBanner() {
 
         {/* CTA */}
         <a
-          href="/english-superstar"
+          href="/kursus/bahasa-inggris/superstar"
           style={{
             fontFamily: fh,
             fontWeight: 700,

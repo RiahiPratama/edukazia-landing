@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { useState, useEffect, createContext, useContext, ReactNode, CSSProperties } from "react";
 import { ADMIN_PHONE, ADMIN_EMAIL, COMPANY } from "@/lib/constants";
 
@@ -54,7 +56,7 @@ function Nav({ isDark, toggle }: { isDark: boolean; toggle: () => void }) {
       transition: "all 0.35s",
     }}>
       <W s={{ maxWidth: 1120, display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}>
-        <a href="/" style={{ display: "flex", alignItems: "center", gap: 9, textDecoration: "none" }}>
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: 9, textDecoration: "none" }}>
           <div style={{
             width: 36, height: 36, borderRadius: 12,
             background: "linear-gradient(135deg,#5C4FE5,#7B6FF0)",
@@ -63,7 +65,7 @@ function Nav({ isDark, toggle }: { isDark: boolean; toggle: () => void }) {
             <span style={{ fontFamily: fh, fontWeight: 800, fontSize: 17, color: "#fff" }}>E</span>
           </div>
           <span style={{ fontFamily: fh, fontWeight: 800, fontSize: 19, color: t.tx }}>EduKazia</span>
-        </a>
+        </Link>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <button onClick={toggle} aria-label="Toggle dark mode" style={{
             width: 36, height: 36, borderRadius: 10, background: t.pS,
@@ -81,13 +83,13 @@ function Nav({ isDark, toggle }: { isDark: boolean; toggle: () => void }) {
               </svg>
             )}
           </button>
-          <a href="/" style={{
+          <Link href="/" style={{
             fontFamily: fh, fontWeight: 700, fontSize: 13, color: "#fff",
             background: "linear-gradient(135deg,#5C4FE5,#7B6FF0)",
             borderRadius: 12, padding: "10px 22px", textDecoration: "none",
           }}>
             Kembali ke Beranda
-          </a>
+          </Link>
         </div>
       </W>
     </nav>

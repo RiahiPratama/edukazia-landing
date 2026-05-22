@@ -1,8 +1,9 @@
+/* eslint-disable */
 // @ts-nocheck
 "use client";
-/* eslint-disable */
 
 import { useState, useEffect, useRef, createContext, useContext } from "react";
+import { BarChart3, ClipboardCheck, Clock, Globe, Map, MessageSquare, Phone, Zap } from "lucide-react";
 
 const TX = createContext();
 const useT = () => useContext(TX);
@@ -33,17 +34,6 @@ function EdukaziaLogo({variant,size,href}){
 
 
 // ═══════ SVG ICON COMPONENTS (Lucide-style) ═══════
-function IconVideo({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>;}
-function IconPhone({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>;}
-function IconBook({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>;}
-function IconBarChart({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>;}
-function IconZap({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>;}
-function IconMessage({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>;}
-function IconClipboard({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>;}
-function IconClock({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>;}
-function IconGlobe({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>;}
-function IconMap({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>;}
-function IconTrendUp({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>;}
 
 function useVis(th=0.1){const r=useRef(null);const[v,s]=useState(false);useEffect(()=>{const e=r.current;if(!e)return;const o=new IntersectionObserver(([x])=>{if(x.isIntersecting){s(true);o.disconnect();}},{threshold:th});o.observe(e);return()=>o.disconnect();},[th]);return[r,v];}
 function W({children,s={}}){return <div style={{maxWidth:1120,margin:"0 auto",padding:"0 24px",...s}}>{children}</div>;}
@@ -228,10 +218,10 @@ function Hero(){
 function PainAndSolution(){
   const t=useT();
   const items=[
-    {pain:"Anak lebih akrab sama HP daripada buku?",solution:"Ubah screen time jadi waktu belajar yang produktif lewat portal interaktif.",icon:<IconPhone size={20} color={t.pk}/>,c:t.pk},
-    {pain:"Les offline bentrok jadwal sekolah?",solution:"Belajar via Zoom — jadwal fleksibel, dari rumah, tidak perlu antar-jemput.",icon:<IconClock size={20} color={t.or}/>,c:t.or},
-    {pain:"Mau bisa bahasa asing tapi bingung mulai?",solution:"Tes Level tentukan start point yang pas. Kurikulum berbasis level, bukan ikut-ikutan.",icon:<IconGlobe size={20} color={t.p}/>,c:t.p},
-    {pain:"Di daerah, pilihan guru terbatas?",solution:"Tutor berpengalaman dari berbagai kota, dihubungkan lewat Zoom.",icon:<IconMap size={20} color="#6366F1"/>,c:"#6366F1"},
+    {pain:"Anak lebih akrab sama HP daripada buku?",solution:"Ubah screen time jadi waktu belajar yang produktif lewat portal interaktif.",icon:<Phone size={20} color={t.pk}/>,c:t.pk},
+    {pain:"Les offline bentrok jadwal sekolah?",solution:"Belajar via Zoom — jadwal fleksibel, dari rumah, tidak perlu antar-jemput.",icon:<Clock size={20} color={t.or}/>,c:t.or},
+    {pain:"Mau bisa bahasa asing tapi bingung mulai?",solution:"Tes Level tentukan start point yang pas. Kurikulum berbasis level, bukan ikut-ikutan.",icon:<Globe size={20} color={t.p}/>,c:t.p},
+    {pain:"Di daerah, pilihan guru terbatas?",solution:"Tutor berpengalaman dari berbagai kota, dihubungkan lewat Zoom.",icon:<Map size={20} color="#6366F1"/>,c:"#6366F1"},
   ];
   return <section style={{background:t.bg,padding:"80px 0"}}><W>
     <Rv><div style={{textAlign:"center",marginBottom:48}}><h2 style={{fontFamily:fh,fontSize:36,fontWeight:800,color:t.tx,margin:0,letterSpacing:-0.5,lineHeight:1.2}}>Kenapa Potensi Itu<br/>Belum Terarahkan?</h2><p style={{fontFamily:fb,fontSize:15,color:t.sub,marginTop:10,maxWidth:460,marginLeft:"auto",marginRight:"auto",lineHeight:1.7}}>Bukan salah Mama. Bukan salah sekolah. Ini soal keterbatasan yang bisa diatasi.</p></div></Rv>
@@ -363,7 +353,7 @@ function TesLevelAndFAQ(){
         <Rv><h2 style={{fontFamily:fh,fontSize:32,fontWeight:800,color:t.tx,margin:"0 0 14px",letterSpacing:-0.5}}>Mulai dari Tes Level</h2>
         <p style={{fontFamily:fb,fontSize:14,color:t.sub,lineHeight:1.7,marginBottom:28}}>Remaja SMP dan SMA punya gap yang beda-beda. Tes Level memastikan belajar tidak salah arah.</p></Rv>
         <Rv delay={0.05}><div style={{display:"flex",flexDirection:"column",gap:10}}>
-          {[{n:"1",icon:<IconMessage size={22} color={t.p}/>,title:"Chat WhatsApp",desc:"Kirim nama, usia, kelas, pelajaran."},{n:"2",icon:<IconClipboard size={22} color={t.p}/>,title:"Tes Level Online",desc:"30 menit via Zoom. Santai."},{n:"3",icon:<IconBarChart size={22} color={t.p}/>,title:"Terima Laporan",desc:"Level, kekuatan, kelemahan, rekomendasi."},{n:"4",icon:<IconZap size={22} color={t.p}/>,title:"Mulai Belajar",desc:"Pilih kelas, mulai sesuai level."}].map((s,i)=>
+          {[{n:"1",icon:<MessageSquare size={22} color={t.p}/>,title:"Chat WhatsApp",desc:"Kirim nama, usia, kelas, pelajaran."},{n:"2",icon:<ClipboardCheck size={22} color={t.p}/>,title:"Tes Level Online",desc:"30 menit via Zoom. Santai."},{n:"3",icon:<BarChart3 size={22} color={t.p}/>,title:"Terima Laporan",desc:"Level, kekuatan, kelemahan, rekomendasi."},{n:"4",icon:<Zap size={22} color={t.p}/>,title:"Mulai Belajar",desc:"Pilih kelas, mulai sesuai level."}].map((s,i)=>
             <div key={i} style={{display:"flex",gap:12,alignItems:"flex-start"}}>
               <div style={{width:34,height:34,borderRadius:10,background:t.pS,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,flexShrink:0}}>{s.icon}</div>
               <div><div style={{fontFamily:fh,fontSize:13,fontWeight:700,color:t.tx,margin:"0 0 2px"}}>Step {s.n}: {s.title}</div><div style={{fontFamily:fb,fontSize:12,color:t.mu}}>{s.desc}</div></div>

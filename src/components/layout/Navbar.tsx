@@ -20,6 +20,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { ChevronDown, Sun, Moon, Menu, X } from "lucide-react"
 import { useTheme, fb, fh } from "@/lib/theme"
 import { Container } from "@/components/ui/Container"
 import { Logo } from "@/components/ui/Logo"
@@ -30,6 +31,7 @@ import { StickyBadge } from "./StickyBadge"
 // ═══════════════════════════════════════════════════════════
 
 const PORTAL_URL = "https://app.edukazia.com"
+const SUPERSTAR_URL = "/kursus/bahasa-inggris/superstar"
 
 type DropdownItem = { text: string; href: string }
 type DropdownMenu = { label: string; items: DropdownItem[] }
@@ -54,60 +56,6 @@ const DROPDOWNS: DropdownMenu[] = [
     ],
   },
 ]
-
-// ═══════════════════════════════════════════════════════════
-// SVG ICONS — inline untuk hindari extra import
-// ═══════════════════════════════════════════════════════════
-
-function ChevronDownIcon() {
-  return (
-    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-      <path
-        d="M2 3.5L5 6.5L8 3.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
-function SunIcon({ color }: { color: string }) {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round">
-      <circle cx="12" cy="12" r="5" />
-      <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-    </svg>
-  )
-}
-
-function MoonIcon({ color }: { color: string }) {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-    </svg>
-  )
-}
-
-function HamburgerIcon({ open, color }: { open: boolean; color: string }) {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round">
-      {open ? (
-        <>
-          <path d="M18 6L6 18" />
-          <path d="M6 6l12 12" />
-        </>
-      ) : (
-        <>
-          <path d="M3 12h18" />
-          <path d="M3 6h18" />
-          <path d="M3 18h18" />
-        </>
-      )}
-    </svg>
-  )
-}
 
 // ═══════════════════════════════════════════════════════════
 // MAIN COMPONENT
@@ -210,7 +158,7 @@ export function Navbar() {
                   aria-haspopup="true"
                 >
                   {dd.label}
-                  <ChevronDownIcon />
+                  <ChevronDown size={10} />
                 </button>
 
                 {openDD === di && (
@@ -256,6 +204,39 @@ export function Navbar() {
               </div>
             ))}
 
+            {/* Standalone — English Superstar (premium positioning) */}
+            <a
+              href={SUPERSTAR_URL}
+              style={{
+                fontFamily: fb,
+                fontSize: 13,
+                fontWeight: 700,
+                color: t.tx,
+                background: "transparent",
+                border: `1px solid ${t.cb}`,
+                cursor: "pointer",
+                padding: "8px 14px",
+                borderRadius: 10,
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                marginLeft: 4,
+                transition: "all 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "rgba(230,184,0,0.08)"
+                e.currentTarget.style.borderColor = "rgba(230,184,0,0.4)"
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "transparent"
+                e.currentTarget.style.borderColor = t.cb
+              }}
+            >
+              <span aria-hidden="true">⭐</span>
+              English Superstar
+            </a>
+
             {/* Theme toggle */}
             <button
               type="button"
@@ -275,7 +256,7 @@ export function Navbar() {
                 marginLeft: 8,
               }}
             >
-              {isDark ? <SunIcon color={t.tx} /> : <MoonIcon color={t.tx} />}
+              {isDark ? <Sun size={16} color={t.tx} /> : <Moon size={16} color={t.tx} />}
             </button>
 
             {/* Portal CTA */}
@@ -332,7 +313,7 @@ export function Navbar() {
                 justifyContent: "center",
               }}
             >
-              {isDark ? <SunIcon color={t.tx} /> : <MoonIcon color={t.tx} />}
+              {isDark ? <Sun size={16} color={t.tx} /> : <Moon size={16} color={t.tx} />}
             </button>
             <button
               type="button"
@@ -351,7 +332,7 @@ export function Navbar() {
                 justifyContent: "center",
               }}
             >
-              <HamburgerIcon open={mobOpen} color={t.tx} />
+              {mobOpen ? <X size={18} color={t.tx} /> : <Menu size={18} color={t.tx} />}
             </button>
           </div>
         </Container>
@@ -429,6 +410,30 @@ export function Navbar() {
               ))}
             </div>
           ))}
+
+          {/* Standalone — English Superstar (premium positioning) */}
+          <a
+            href={SUPERSTAR_URL}
+            onClick={() => setMobOpen(false)}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "14px 16px",
+              borderRadius: 12,
+              textDecoration: "none",
+              fontFamily: fh,
+              fontSize: 15,
+              fontWeight: 700,
+              color: t.tx,
+              background: "rgba(230,184,0,0.08)",
+              border: "1px solid rgba(230,184,0,0.3)",
+              marginBottom: 20,
+            }}
+          >
+            <span aria-hidden="true">⭐</span>
+            English Superstar
+          </a>
         </div>
       )}
     </>

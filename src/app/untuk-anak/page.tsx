@@ -1,8 +1,9 @@
+/* eslint-disable */
 // @ts-nocheck
 "use client";
-/* eslint-disable */
 
 import { useState, useEffect, useRef, Fragment, createContext, useContext } from "react";
+import { AlertCircle, BarChart3, Book, ClipboardCheck, GraduationCap, MessageSquare, Phone, Search, TrendingUp, Video, Zap } from "lucide-react";
 
 const TX = createContext();
 const useT = () => useContext(TX);
@@ -56,18 +57,6 @@ function EdukaziaLogo({variant,size,href}){
 
 
 // ═══════ SVG ICON COMPONENTS (Lucide-style) ═══════
-function IconVideo({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>;}
-function IconPhone({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>;}
-function IconBook({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>;}
-function IconBarChart({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>;}
-function IconRefresh({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>;}
-function IconZap({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>;}
-function IconMessage({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>;}
-function IconClipboard({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>;}
-function IconGradCap({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>;}
-function IconTrendUp({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>;}
-function IconSearch({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>;}
-function IconAlert({size=24,color="currentColor"}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>;}
 
 function useVis(th=0.1){const r=useRef(null);const[v,s]=useState(false);useEffect(()=>{const e=r.current;if(!e)return;const o=new IntersectionObserver(([x])=>{if(x.isIntersecting){s(true);o.disconnect();}},{threshold:th});o.observe(e);return()=>o.disconnect();},[th]);return[r,v];}
 function W({children,s={}}){return <div style={{maxWidth:1120,margin:"0 auto",padding:"0 24px",...s}}>{children}</div>;}
@@ -342,7 +331,7 @@ function Hero(){
           </Rv>
           <div style={{position:"absolute",bottom:-16,left:-24,background:t.card,borderRadius:14,padding:"12px 18px",border:`1px solid ${t.cb}`,boxShadow:t.cs,animation:"floatSlow 6s ease-in-out infinite",zIndex:2}}>
             <div style={{display:"flex",alignItems:"center",gap:8}}>
-              <div style={{width:32,height:32,borderRadius:8,background:t.gS,display:"flex",alignItems:"center",justifyContent:"center"}}><IconTrendUp size={16} color={t.g}/></div>
+              <div style={{width:32,height:32,borderRadius:8,background:t.gS,display:"flex",alignItems:"center",justifyContent:"center"}}><TrendingUp size={16} color={t.g}/></div>
               <div>
                 <div style={{fontFamily:fh,fontSize:14,fontWeight:800,color:t.g}}>LIVE</div>
                 <div style={{fontFamily:fb,fontSize:9,color:t.mu}}>Progress real-time</div>
@@ -415,9 +404,9 @@ function StorySection(){
         </div>
         <div style={{padding:"28px 32px"}}>
           {[
-            {icon:<IconAlert size={15} color={t.coral}/>,label:"Masalahnya",c:t.coral,text:story.problem},
-            {icon:<IconSearch size={15} color={t.p}/>,label:"Tes Level Menemukan Akarnya",c:t.p,text:story.turning},
-            {icon:<IconTrendUp size={15} color={t.g}/>,label:"Hasilnya (jujur)",c:t.g,text:story.result},
+            {icon:<AlertCircle size={15} color={t.coral}/>,label:"Masalahnya",c:t.coral,text:story.problem},
+            {icon:<Search size={15} color={t.p}/>,label:"Tes Level Menemukan Akarnya",c:t.p,text:story.turning},
+            {icon:<TrendingUp size={15} color={t.g}/>,label:"Hasilnya (jujur)",c:t.g,text:story.result},
           ].map((step,i)=>
             <div key={i} style={{display:"flex",gap:14,marginBottom:i<2?24:0}}>
               <div style={{width:30,height:30,borderRadius:10,background:`${step.c}12`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>{step.icon}</div>
@@ -489,7 +478,7 @@ function CoursesSection(){
     <Rv delay={0.3}>
       <div style={{marginTop:32,background:t.card,borderRadius:16,padding:"20px 28px",border:`1px solid ${t.cb}`,display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:12}}>
         <div style={{display:"flex",alignItems:"center",gap:12}}>
-          <div style={{width:40,height:40,borderRadius:12,background:t.blS,display:"flex",alignItems:"center",justifyContent:"center"}}><IconGradCap size={20} color={t.bl}/></div>
+          <div style={{width:40,height:40,borderRadius:12,background:t.blS,display:"flex",alignItems:"center",justifyContent:"center"}}><GraduationCap size={20} color={t.bl}/></div>
           <div>
             <div style={{fontFamily:fh,fontSize:14,fontWeight:700,color:t.tx}}>Anak Anda sudah remaja (13–18 tahun)?</div>
             <div style={{fontFamily:fb,fontSize:12,color:t.sub}}>Kami punya program khusus SMP–SMA dengan pendekatan yang berbeda.</div>
@@ -664,10 +653,10 @@ function ClassTypes(){
 function TesLevel(){
   const t=useT();
   const steps = [
-    {n:"1",icon:<IconMessage size={22} color={t.p}/>,title:"Chat WhatsApp",desc:"Kirim nama, usia anak, dan pelajaran yang diminati."},
-    {n:"2",icon:<IconClipboard size={22} color={t.p}/>,title:"Tes Level Online",desc:"30 menit via Zoom bersama tutor. Santai, tanpa tekanan."},
-    {n:"3",icon:<IconBarChart size={22} color={t.p}/>,title:"Terima Laporan",desc:"Level anak, kekuatan, area yang perlu ditingkatkan, rekomendasi kelas."},
-    {n:"4",icon:<IconZap size={22} color={t.p}/>,title:"Mulai Belajar",desc:"Pilih tipe kelas, jadwal disepakati, langsung mulai belajar sesuai level anak."},
+    {n:"1",icon:<MessageSquare size={22} color={t.p}/>,title:"Chat WhatsApp",desc:"Kirim nama, usia anak, dan pelajaran yang diminati."},
+    {n:"2",icon:<ClipboardCheck size={22} color={t.p}/>,title:"Tes Level Online",desc:"30 menit via Zoom bersama tutor. Santai, tanpa tekanan."},
+    {n:"3",icon:<BarChart3 size={22} color={t.p}/>,title:"Terima Laporan",desc:"Level anak, kekuatan, area yang perlu ditingkatkan, rekomendasi kelas."},
+    {n:"4",icon:<Zap size={22} color={t.p}/>,title:"Mulai Belajar",desc:"Pilih tipe kelas, jadwal disepakati, langsung mulai belajar sesuai level anak."},
   ];
   return <section id="tes-level" style={{background:t.bgC,padding:"88px 0"}}><W>
     <Rv><SH label="LANGKAH PERTAMA" title={<>Tes Level Anak.<br/>Supaya Setiap Sesi Tepat Sasaran.</>} sub="Setiap anak beda titik start-nya. Tes Level memastikan tutor tahu persis kekuatan dan kelemahan anak."/></Rv>
@@ -718,7 +707,7 @@ function Monitoring(){
       <div className="story-flex" style={{display:"flex",gap:24,flexWrap:"wrap"}}>
         <div style={{flex:"1 1 340px",background:t.cta,borderRadius:24,padding:"36px 32px",position:"relative",overflow:"hidden"}}>
           <div style={{position:"absolute",top:-30,right:-30,width:120,height:120,borderRadius:"50%",background:"rgba(255,255,255,0.05)"}}/>
-          <div style={{marginBottom:14,display:"flex"}}><IconPhone size={32} color="rgba(255,255,255,0.9)"/></div>
+          <div style={{marginBottom:14,display:"flex"}}><Phone size={32} color="rgba(255,255,255,0.9)"/></div>
           <h3 style={{fontFamily:fh,fontSize:20,fontWeight:800,color:"#fff",margin:"0 0 10px"}}>Portal Orang Tua</h3>
           <p style={{fontFamily:fb,fontSize:14,color:"rgba(255,255,255,0.7)",lineHeight:1.7,marginBottom:16}}>Login di app.edukazia.com — data real-time, kapan saja.</p>
           {["Jadwal kelas + status LIVE","Progress sesi (misal 6/8)","Laporan tutor + foto aktivitas","Rekaman kelas untuk review"].map((f,i)=>
@@ -729,9 +718,9 @@ function Monitoring(){
           )}
         </div>
         <div style={{flex:"1 1 300px",display:"flex",flexDirection:"column",gap:14}}>
-          {[{icon:<IconMessage size={18} color={t.g}/>,title:"Notifikasi WhatsApp Otomatis",desc:"Jadwal, laporan baru, sisa sesi — masuk ke WA Mama tanpa perlu buka portal.",bg:t.gS,c:t.g},
-            {icon:<IconVideo size={18} color={t.bl}/>,title:"Rekaman Setiap Kelas",desc:"Anak bisa tonton ulang. Mama bisa cek sendiri jalannya kelas.",bg:t.blS,c:t.bl},
-            {icon:<IconBook size={18} color={t.or}/>,title:"Portal Siswa",desc:"Anak akses materi: bacaan interaktif, kosakata native speaker, latihan CEFR.",bg:t.orS,c:t.or},
+          {[{icon:<MessageSquare size={18} color={t.g}/>,title:"Notifikasi WhatsApp Otomatis",desc:"Jadwal, laporan baru, sisa sesi — masuk ke WA Mama tanpa perlu buka portal.",bg:t.gS,c:t.g},
+            {icon:<Video size={18} color={t.bl}/>,title:"Rekaman Setiap Kelas",desc:"Anak bisa tonton ulang. Mama bisa cek sendiri jalannya kelas.",bg:t.blS,c:t.bl},
+            {icon:<Book size={18} color={t.or}/>,title:"Portal Siswa",desc:"Anak akses materi: bacaan interaktif, kosakata native speaker, latihan CEFR.",bg:t.orS,c:t.or},
           ].map((f,i)=>
             <div key={i} style={{background:t.card,borderRadius:18,padding:"20px 22px",border:`1px solid ${t.cb}`,boxShadow:t.cs,display:"flex",gap:14,alignItems:"flex-start"}}>
               <div style={{width:38,height:38,borderRadius:12,background:f.bg,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>{f.icon}</div>
@@ -785,7 +774,7 @@ function CTAFinal(){
       <div style={{position:"absolute",top:-40,right:-40,width:180,height:180,borderRadius:"50%",background:"rgba(255,255,255,0.05)"}}/>
       <div style={{position:"absolute",bottom:-60,left:-30,width:220,height:220,borderRadius:"50%",background:"rgba(255,255,255,0.03)"}}/>
       <div style={{padding:"56px 48px",textAlign:"center",position:"relative",zIndex:1}}>
-        <div style={{marginBottom:12,animation:"bounce 2s ease infinite",display:"flex",justifyContent:"center"}}><IconZap size={36} color="rgba(255,255,255,0.85)"/></div>
+        <div style={{marginBottom:12,animation:"bounce 2s ease infinite",display:"flex",justifyContent:"center"}}><Zap size={36} color="rgba(255,255,255,0.85)"/></div>
         <h2 style={{fontFamily:fh,fontSize:32,fontWeight:800,color:"#fff",margin:"0 0 12px",lineHeight:1.2}}>Siap Mulai Perjalanan<br/>Belajar Anak?</h2>
         <p style={{fontFamily:fb,fontSize:15,color:"rgba(255,255,255,0.7)",lineHeight:1.7,marginBottom:32,maxWidth:480,marginLeft:"auto",marginRight:"auto"}}>
           Tim kami bantu pilihkan kursus, tipe kelas, dan jadwal yang pas untuk anak Anda. Chat sekarang — tanpa komitmen.
