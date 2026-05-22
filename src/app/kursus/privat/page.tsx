@@ -3,7 +3,7 @@
 "use client";
 
 import { useState, useEffect, useRef, createContext, useContext } from "react";
-import { BarChart3, Calendar, ClipboardCheck, GraduationCap, MessageSquare, RefreshCw, Users, Zap } from "lucide-react";
+import { BarChart3, BookOpen, Calendar, Check, ClipboardCheck, GraduationCap, MessageSquare, RefreshCw, Users, Zap } from "lucide-react";
 
 const TX = createContext();
 const useT = () => useContext(TX);
@@ -55,8 +55,14 @@ html{scroll-behavior:smooth}body{overflow-x:hidden;-webkit-font-smoothing:antial
   .desktop-menu{display:none!important}.mobile-menu-btn{display:flex!important}
   .hide-mobile{display:none!important}.grid-2{grid-template-columns:1fr!important}
   .grid-3{grid-template-columns:1fr!important}
-  .hero-flex{flex-direction:column!important;text-align:center!important}
-  .hero-right{display:none!important}.story-flex{flex-direction:column!important}
+  .hero-flex{flex-direction:column!important;text-align:center!important;gap:20px!important}.hero-flex>div:first-child{flex:0 1 auto!important;width:100%!important}
+  .hero-right{display:block!important;flex:0 0 auto!important;width:100%!important;max-width:340px!important;margin:0 auto!important;position:relative!important;overflow:visible!important}.hero-right>div{width:100%!important;max-width:100%!important}.story-flex{flex-direction:column!important}
+  /* Audience selector — mobile stacked horizontal compact (~75px tall) */
+  .audience-grid{grid-template-columns:1fr!important;gap:8px!important}
+  .audience-tab{flex-direction:row!important;text-align:left!important;padding:12px 14px!important;align-items:center!important;gap:14px!important}
+  .audience-tab .audience-icon{width:44px!important;height:44px!important;border-radius:12px!important}
+  .audience-tab .audience-text{flex:1!important;min-width:0!important}
+  .audience-tab .audience-check{position:static!important;top:auto!important;right:auto!important;flex-shrink:0!important;order:99!important;width:26px!important;height:26px!important}
 }
 @media(min-width:769px){.mobile-menu-btn{display:none!important}}
 `;
@@ -75,13 +81,13 @@ function Nav({isDark,toggle}){
         <EdukaziaLogo variant={t.m==='dark'||!sc?'white':'default'} size="md" href="/"/>{sc&&<span className="hide-mobile" style={{fontFamily:fb,fontSize:11,fontWeight:600,color:t.p,background:t.pS,padding:"4px 12px",borderRadius:100,marginLeft:8,whiteSpace:"nowrap"}}>Bimbel dari Maluku Utara yang punya LMS Keren!</span>}
         <div className="desktop-menu" style={{display:"flex",alignItems:"center",gap:4}}>
           {dropdowns.map((dd,di)=><div key={di} style={{position:"relative"}} onMouseEnter={()=>setOpenDD(di)} onMouseLeave={()=>setOpenDD(null)}><button style={{fontFamily:fb,fontSize:13,fontWeight:600,color:sc?t.sub:"rgba(255,255,255,0.7)",background:"none",border:"none",cursor:"pointer",padding:"8px 12px",borderRadius:8,display:"flex",alignItems:"center",gap:5}}>{dd.label}<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></button>{openDD===di&&<div style={{position:"absolute",top:"100%",left:0,background:t.card,borderRadius:14,border:`1px solid ${t.cb}`,boxShadow:"0 12px 40px rgba(0,0,0,0.15)",padding:6,minWidth:220,zIndex:100}}>{dd.items.map((item,ii)=><a key={ii} href={item.href} style={{display:"block",padding:"10px 16px",borderRadius:10,textDecoration:"none",fontFamily:fb,fontSize:13,fontWeight:600,color:t.tx}} onMouseEnter={e=>e.currentTarget.style.background=t.pS} onMouseLeave={e=>e.currentTarget.style.background="transparent"}>{item.text}</a>)}</div>}</div>)}
-          <button onClick={toggle} style={{width:36,height:36,borderRadius:10,background:sc?t.pS:"rgba(255,255,255,0.08)",border:`1px solid ${sc?t.cb:"rgba(255,255,255,0.08)"}`,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",marginLeft:8}}>{isDark?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={sc?t.tx:"#fff"} strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>:<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={sc?t.tx:"#fff"} strokeWidth="2" strokeLinecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>}</button>
+          <button onClick={toggle} style={{width:36,height:36,borderRadius:10,background:sc?"rgba(92,79,229,0.08)":"rgba(255,255,255,0.1)",border:`1.5px solid ${sc?"rgba(92,79,229,0.28)":"rgba(255,255,255,0.2)"}`,boxShadow:sc?"0 1px 3px rgba(0,0,0,0.08)":"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",marginLeft:8}}>{isDark?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={sc?t.tx:"#fff"} strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>:<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={sc?t.tx:"#fff"} strokeWidth="2" strokeLinecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>}</button>
           <a href="https://app.edukazia.com" style={{fontFamily:fh,fontWeight:700,fontSize:13,color:"#fff",background:t.cta,borderRadius:12,padding:"10px 22px",textDecoration:"none",boxShadow:"0 4px 16px rgba(92,79,229,0.2)",marginLeft:8}}>Login ke Portal</a>
         </div>
         <div className="mobile-menu-btn" style={{display:"none",alignItems:"center",gap:8}}>
           <a href="https://app.edukazia.com" style={{fontFamily:fh,fontWeight:700,fontSize:11,color:"#fff",background:t.cta,borderRadius:10,padding:"8px 14px",textDecoration:"none",whiteSpace:"nowrap"}}>Login ke Portal</a>
-          <button onClick={toggle} style={{width:36,height:36,borderRadius:10,background:"rgba(255,255,255,0.08)",border:"1px solid rgba(255,255,255,0.08)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>{isDark?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>:<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>}</button>
-          <button onClick={()=>setMob(m=>!m)} style={{width:36,height:36,borderRadius:10,background:"rgba(255,255,255,0.08)",border:"1px solid rgba(255,255,255,0.08)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round">{mob?<><path d="M18 6L6 18"/><path d="M6 6l12 12"/></>:<><path d="M3 12h18"/><path d="M3 6h18"/><path d="M3 18h18"/></>}</svg></button>
+          <button onClick={toggle} style={{width:36,height:36,borderRadius:10,background:sc?"rgba(92,79,229,0.08)":"rgba(255,255,255,0.1)",border:sc?"1.5px solid rgba(92,79,229,0.28)":"1.5px solid rgba(255,255,255,0.2)",boxShadow:sc?"0 1px 3px rgba(0,0,0,0.08)":"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>{isDark?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={sc?t.tx:"#fff"} strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>:<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={sc?t.tx:"#fff"} strokeWidth="2" strokeLinecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>}</button>
+          <button onClick={()=>setMob(m=>!m)} style={{width:36,height:36,borderRadius:10,background:sc?"rgba(92,79,229,0.08)":"rgba(255,255,255,0.1)",border:sc?"1.5px solid rgba(92,79,229,0.28)":"1.5px solid rgba(255,255,255,0.2)",boxShadow:sc?"0 1px 3px rgba(0,0,0,0.08)":"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={sc?t.tx:"#fff"} strokeWidth="2" strokeLinecap="round">{mob?<><path d="M18 6L6 18"/><path d="M6 6l12 12"/></>:<><path d="M3 12h18"/><path d="M3 6h18"/><path d="M3 18h18"/></>}</svg></button>
         </div>
       </W>
     </nav>
@@ -207,7 +213,7 @@ function AudienceSection(){
 
   const audiences = [
     {
-      label:"Anak 7–13 thn",icon:<GraduationCap size={20} color={t.pk}/>,c:t.pk,
+      label:"Anak",ageRange:"7–13 thn",sub:"Fondasi kuat sejak dini",Icon:BookOpen,c:t.pk,
       headline:"Anak Belajar Sesuai Temponya",
       desc:"Anak yang pemalu jadi berani coba. Anak yang cepat paham tidak harus nunggu teman. Tutor kenal karakter anak dan tahu cara mendekatinya.",
       pains:["Anak malu atau tidak berani ngomong di kelompok","Butuh perhatian ekstra yang tidak didapat di sekolah","Di daerah tidak ada guru yang cocok untuk anak"],
@@ -216,7 +222,7 @@ function AudienceSection(){
       waText:"Halo+EduKazia%2C+saya+ingin+kelas+Privat+untuk+anak+saya.+Usia%3A+...+Pelajaran%3A+...",
     },
     {
-      label:"Remaja 13–18 thn",icon:<GraduationCap size={20} color={t.bl}/>,c:t.bl,
+      label:"Remaja",ageRange:"13–18 thn",sub:"Arahkan potensi remaja",Icon:GraduationCap,c:t.bl,
       headline:"Perhatian Penuh di Usia yang Paling Menentukan",
       desc:"SMP–SMA itu masa kritis. Di kelas Privat, tutor jadi mentor yang paham cara belajar anak — bukan sekedar guru yang ngasih materi lalu pergi.",
       pains:["Jadwal sekolah & ekskul padat, les offline bentrok","Mau bisa bahasa asing tapi tidak tahu mulai dari mana","Materi sekolah terlalu cepat, butuh penjelasan ulang yang sabar"],
@@ -225,7 +231,7 @@ function AudienceSection(){
       waText:"Halo+EduKazia%2C+saya+ingin+kelas+Privat+untuk+anak+remaja+saya.+Usia%3A+...+Kelas%3A+...",
     },
     {
-      label:"Mama / Dewasa",icon:<Users size={20} color={t.g}/>,c:t.g,
+      label:"Mama / Dewasa",ageRange:"18+ thn",sub:"Upgrade diri, bantu anak",Icon:Users,c:t.g,
       headline:"Belajar Tanpa Malu, Tanpa Tekanan",
       desc:"Cuma Mama dan tutor. Tidak ada yang menilai, tidak ada yang lebih muda yang bikin minder. Tempo belajar sesuai Mama — tidak dipaksa cepat.",
       pains:["Malu belajar di usia segini, takut dinilai","Anak tanya PR tapi Mama cuma bisa bilang 'tanya guru aja'","Sibuk urus rumah tangga, tidak punya waktu tetap"],
@@ -243,40 +249,58 @@ function AudienceSection(){
       <p style={{fontFamily:fb,fontSize:15,color:t.sub,marginTop:10,lineHeight:1.7}}>Satu produk, tiga kebutuhan yang berbeda. Pilih yang sesuai.</p>
     </div></Rv>
 
-    {/* Tab selector — immersive photo cards, all bright */}
+    {/* Tab selector — premium tile design with gradient active state */}
     <Rv delay={0.05}>
-      <div className="grid-3" style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:16,marginBottom:44}}>
+      <div className="audience-grid" style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:14,marginBottom:44}}>
         {audiences.map((au,i)=>{
           const active = tab===i;
-          const photos = [
-            "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=400&h=500&fit=crop&crop=faces",
-            "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400&h=500&fit=crop&crop=faces",
-            "https://images.unsplash.com/photo-1591035897819-f4bdf739f446?w=400&h=500&fit=crop&crop=faces",
-          ];
-          const subs = ["Fondasi kuat sejak dini","Arahkan potensi remaja","Upgrade diri, bantu anak"];
-          return <div key={i} onClick={()=>setTab(i)} style={{
-            height:200,borderRadius:22,overflow:"hidden",
-            backgroundImage:`url(${photos[i]})`,backgroundSize:"cover",backgroundPosition:"center",
-            position:"relative",cursor:"pointer",
-            transition:"all 0.4s cubic-bezier(0.22,1,0.36,1)",
-            transform:active?"scale(1.03)":"scale(1)",
-            border:active?`3px solid ${au.c}`:`3px solid transparent`,
-            boxShadow:active?`0 16px 48px ${au.c}30`:"0 4px 16px rgba(0,0,0,0.08)",
+          return <button key={i} onClick={()=>setTab(i)} className="audience-tab" style={{
+            background: active ? `linear-gradient(135deg, ${au.c}0E 0%, ${au.c}1F 100%)` : t.card,
+            border: active ? `2px solid ${au.c}` : `1.5px solid ${t.cb}`,
+            borderRadius: 18,
+            padding: "22px 16px",
+            cursor: "pointer",
+            transition: "all 0.4s cubic-bezier(0.22,1,0.36,1)",
+            transform: active ? "translateY(-3px)" : "none",
+            boxShadow: active ? `0 14px 36px ${au.c}28, 0 0 0 1px ${au.c}10` : t.cs,
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 12,
+            textAlign: "center",
+            outline: "none",
+            overflow: "hidden",
           }}>
-            {/* Gradient overlay — soft bottom gradient for text readability, same for all */}
-            <div style={{position:"absolute",inset:0,background:`linear-gradient(180deg,transparent 30%,${au.c}CC 90%,${au.c} 100%)`,transition:"all 0.4s"}}/>
+            {/* Decorative gradient orb (top-right) for active */}
+            {active && <div style={{position:"absolute",top:-20,right:-20,width:80,height:80,borderRadius:"50%",background:`radial-gradient(circle,${au.c}25 0%,transparent 70%)`,pointerEvents:"none"}}/>}
 
-            {/* Active checkmark */}
-            {active && <div style={{position:"absolute",top:14,right:14,width:28,height:28,borderRadius:"50%",background:au.c,border:"3px solid rgba(255,255,255,0.4)",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:`0 0 12px ${au.c}50`}}>
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 5-5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </div>}
-
-            {/* Text at bottom */}
-            <div style={{position:"absolute",bottom:0,left:0,right:0,padding:"20px 22px"}}>
-              <div style={{fontFamily:fh,fontSize:20,fontWeight:800,color:"#fff",marginBottom:4}}>{au.label}</div>
-              <div style={{fontFamily:fb,fontSize:13,color:"rgba(255,255,255,0.85)",lineHeight:1.4}}>{subs[i]}</div>
+            {/* Icon container with gradient on active */}
+            <div className="audience-icon" style={{
+              width: 52, height: 52, borderRadius: 14,
+              background: active ? `linear-gradient(135deg, ${au.c}, ${au.c}DD)` : `${au.c}12`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              transition: "all 0.4s cubic-bezier(0.22,1,0.36,1)",
+              boxShadow: active ? `0 6px 20px ${au.c}45` : "none",
+              transform: active ? "scale(1.05)" : "scale(1)",
+              flexShrink: 0,
+              zIndex: 1,
+            }}>
+              <au.Icon size={26} color={active?"#fff":au.c} strokeWidth={2.2}/>
             </div>
-          </div>;
+
+            {/* Text block */}
+            <div className="audience-text" style={{zIndex:1}}>
+              <div style={{fontFamily:fh,fontSize:11,fontWeight:700,color:au.c,marginBottom:3,letterSpacing:0.5,textTransform:"uppercase"}}>{au.ageRange}</div>
+              <div style={{fontFamily:fh,fontSize:15,fontWeight:800,color:active?au.c:t.tx,marginBottom:4,letterSpacing:-0.3,lineHeight:1.2}}>{au.label}</div>
+              <div style={{fontFamily:fb,fontSize:11,color:t.mu,lineHeight:1.4}}>{au.sub}</div>
+            </div>
+
+            {/* Active indicator: checkmark badge */}
+            {active && <div className="audience-check" style={{position:"absolute",top:12,right:12,width:24,height:24,borderRadius:"50%",background:au.c,display:"flex",alignItems:"center",justifyContent:"center",boxShadow:`0 3px 10px ${au.c}55`,zIndex:2}}>
+              <Check size={13} color="#fff" strokeWidth={3}/>
+            </div>}
+          </button>;
         })}
       </div>
     </Rv>

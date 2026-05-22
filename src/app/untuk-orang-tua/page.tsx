@@ -3,6 +3,7 @@
 "use client";
 
 import { useState, useEffect, useRef, createContext, useContext } from "react";
+import { GraduationCap, Lock, CalendarClock, Globe, MessageSquare, ClipboardList, BarChart3, Rocket, Target, Sparkles, Plus } from "lucide-react";
 
 const TX = createContext();
 const useT = () => useContext(TX);
@@ -52,8 +53,8 @@ html{scroll-behavior:smooth}body{overflow-x:hidden;-webkit-font-smoothing:antial
   .desktop-menu{display:none!important}.mobile-menu-btn{display:flex!important}
   .hide-mobile{display:none!important}.grid-2{grid-template-columns:1fr!important}
   .grid-3{grid-template-columns:1fr!important}
-  .hero-flex{flex-direction:column!important;text-align:center!important}
-  .hero-right{display:none!important}.story-flex{flex-direction:column!important}
+  .hero-flex{flex-direction:column!important;text-align:center!important;gap:20px!important}.hero-flex>div:first-child{flex:0 1 auto!important;width:100%!important}
+  .hero-right{display:block!important;flex:0 0 auto!important;width:100%!important;max-width:340px!important;margin:0 auto!important;position:relative!important;overflow:visible!important}.hero-right>div{width:100%!important;max-width:100%!important}.story-flex{flex-direction:column!important}
 }
 @media(min-width:769px){.mobile-menu-btn{display:none!important}}
 `;
@@ -98,7 +99,7 @@ function Nav({isDark,toggle}){
               )}
             </div>
           ))}
-          <button onClick={toggle} style={{width:36,height:36,borderRadius:10,background:t.pS,border:`1px solid ${t.cb}`,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",marginLeft:8}} title={isDark?"Mode Terang":"Mode Gelap"}>
+          <button onClick={toggle} style={{width:36,height:36,borderRadius:10,background:t.pS,border:`1.5px solid ${t.m==="dark"?"rgba(255,255,255,0.18)":"rgba(92,79,229,0.28)"}`, boxShadow:t.m==="dark"?"0 2px 8px rgba(0,0,0,0.3)":"0 1px 3px rgba(0,0,0,0.08)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",marginLeft:8}} title={isDark?"Mode Terang":"Mode Gelap"}>
             {isDark?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={t.tx} strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
             :<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={t.tx} strokeWidth="2" strokeLinecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>}
           </button>
@@ -106,11 +107,11 @@ function Nav({isDark,toggle}){
         </div>
         <div className="mobile-menu-btn" style={{display:"none",alignItems:"center",gap:8}}>
           <a href="https://app.edukazia.com" style={{fontFamily:fh,fontWeight:700,fontSize:11,color:"#fff",background:"linear-gradient(135deg,#5C4FE5,#7B6FF0)",borderRadius:10,padding:"8px 14px",textDecoration:"none",whiteSpace:"nowrap"}}>Login ke Portal</a>
-          <button onClick={toggle} style={{width:36,height:36,borderRadius:10,background:t.pS,border:`1px solid ${t.cb}`,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
+          <button onClick={toggle} style={{width:36,height:36,borderRadius:10,background:t.pS,border:`1.5px solid ${t.m==="dark"?"rgba(255,255,255,0.18)":"rgba(92,79,229,0.28)"}`, boxShadow:t.m==="dark"?"0 2px 8px rgba(0,0,0,0.3)":"0 1px 3px rgba(0,0,0,0.08)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
             {isDark?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={t.tx} strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
             :<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={t.tx} strokeWidth="2" strokeLinecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>}
           </button>
-          <button onClick={()=>setMob(m=>!m)} style={{width:36,height:36,borderRadius:10,background:t.pS,border:`1px solid ${t.cb}`,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
+          <button onClick={()=>setMob(m=>!m)} style={{width:36,height:36,borderRadius:10,background:t.pS,border:`1.5px solid ${t.m==="dark"?"rgba(255,255,255,0.18)":"rgba(92,79,229,0.28)"}`, boxShadow:t.m==="dark"?"0 2px 8px rgba(0,0,0,0.3)":"0 1px 3px rgba(0,0,0,0.08)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={t.tx} strokeWidth="2" strokeLinecap="round">
               {mob ? <><path d="M18 6L6 18"/><path d="M6 6l12 12"/></> : <><path d="M3 12h18"/><path d="M3 6h18"/><path d="M3 18h18"/></>}
             </svg>
@@ -216,8 +217,8 @@ function Hero(){
             </div>
           </Rv>
           <div style={{position:"absolute",bottom:-10,left:-24,background:t.card,borderRadius:12,padding:"10px 16px",border:`1px solid ${t.cb}`,boxShadow:t.cs,animation:"float 5s ease-in-out infinite",zIndex:2}}>
-            <div style={{display:"flex",alignItems:"center",gap:6}}>
-              <span style={{fontSize:16}}>🎯</span>
+            <div style={{display:"flex",alignItems:"center",gap:8}}>
+              <div style={{width:28,height:28,borderRadius:8,background:`${t.p}15`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}><Target size={16} color={t.p} strokeWidth={2.2}/></div>
               <div><div style={{fontFamily:fh,fontSize:11,fontWeight:800,color:t.p}}>Mama belajar</div><div style={{fontFamily:fb,fontSize:9,color:t.mu}}>Anak ikut terbantu</div></div>
             </div>
           </div>
@@ -231,10 +232,10 @@ function Hero(){
 function PainAndSolution(){
   const t=useT();
   const items=[
-    {pain:"Anak tanya PR, Mama cuma bisa bilang 'tanya guru aja'?",solution:"Mama belajar — anak terbantu di rumah.",icon:"📚",c:t.v},
-    {pain:"Malu belajar di usia segini?",solution:"Kelas Privat: cuma Mama dan tutor. Nggak ada yang tahu.",icon:"🙈",c:t.pk},
-    {pain:"Sibuk dari pagi sampai malam?",solution:"Mama pilih jam sendiri. Pagi, siang, atau malam.",icon:"🏠",c:t.or},
-    {pain:"Di daerah, mau les kemana?",solution:"Via Zoom dari rumah. Tutor berpengalaman, akses dari mana saja.",icon:"🌏",c:t.p},
+    {pain:"Anak tanya PR, Mama cuma bisa bilang 'tanya guru aja'?",solution:"Mama belajar — anak terbantu di rumah.",Icon:GraduationCap,c:t.v},
+    {pain:"Malu belajar di usia segini?",solution:"Kelas Privat: cuma Mama dan tutor. Nggak ada yang tahu.",Icon:Lock,c:t.pk},
+    {pain:"Sibuk dari pagi sampai malam?",solution:"Mama pilih jam sendiri. Pagi, siang, atau malam.",Icon:CalendarClock,c:t.or},
+    {pain:"Di daerah, mau les kemana?",solution:"Via Zoom dari rumah. Tutor berpengalaman, akses dari mana saja.",Icon:Globe,c:t.p},
   ];
   return <section style={{background:t.bg,padding:"80px 0"}}><W>
     <Rv><div style={{textAlign:"center",marginBottom:48}}><h2 style={{fontFamily:fh,fontSize:36,fontWeight:800,color:t.tx,margin:0,letterSpacing:-0.5,lineHeight:1.2}}>Mama Pernah<br/>Merasakan Ini?</h2><p style={{fontFamily:fb,fontSize:15,color:t.sub,marginTop:10,maxWidth:420,marginLeft:"auto",marginRight:"auto",lineHeight:1.7}}>Tenang, Mama nggak sendirian.</p></div></Rv>
@@ -243,7 +244,7 @@ function PainAndSolution(){
         <div onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)} style={{background:t.card,borderRadius:18,overflow:"hidden",border:`1.5px solid ${h?it.c+"30":t.cb}`,boxShadow:h?t.ch:t.cs,transition:"all 0.35s",transform:h?"translateY(-3px)":"none"}}>
           <div style={{height:3,background:it.c,opacity:0.5}}/>
           <div style={{padding:"22px 22px 18px",display:"flex",gap:14,alignItems:"flex-start"}}>
-            <div style={{width:44,height:44,borderRadius:12,background:`${it.c}10`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,flexShrink:0,border:`1px solid ${it.c}12`,transition:"transform 0.3s",transform:h?"scale(1.08) rotate(3deg)":"none"}}>{it.icon}</div>
+            <div style={{width:44,height:44,borderRadius:12,background:`${it.c}10`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,border:`1px solid ${it.c}12`,transition:"transform 0.3s",transform:h?"scale(1.08) rotate(3deg)":"none"}}><it.Icon size={22} color={it.c} strokeWidth={2}/></div>
             <div><h3 style={{fontFamily:fh,fontSize:14,fontWeight:700,color:t.tx,margin:"0 0 6px",lineHeight:1.3}}>{it.pain}</h3><p style={{fontFamily:fb,fontSize:13,color:t.sub,lineHeight:1.6,margin:0}}>{it.solution}</p></div>
           </div>
         </div>
@@ -293,23 +294,27 @@ function Stories(){
 function CoursesAndClasses(){
   const t=useT();
   const courses=[
-    {name:"Bahasa Inggris",tag:"Speaking · Pronunciation · Daily Conversation",desc:"Bisa bantu anak PR, percaya diri ngomong, nggak grogi kalau ketemu bule.",c:t.v},
-    {name:"Bahasa Arab",tag:"Tajwid · Makhraj · Baca Al-Quran",desc:"Baca Quran dengan benar, paham doa harian, bisa ngajari anak ngaji di rumah.",c:t.p},
-    {name:"Mandarin 中文",tag:"Pinyin · Karakter Dasar · Percakapan",desc:"Challenge diri sendiri. Bahasa Mandarin makin dibutuhkan — mulai dari nol juga bisa.",c:t.or},
+    {name:"Bahasa Inggris",letter:"EN",tag:"Speaking · Pronunciation · Daily Conversation",desc:"Bisa bantu anak PR, percaya diri ngomong, nggak grogi kalau ketemu bule.",c:t.v},
+    {name:"Bahasa Arab",letter:"AR",tag:"Tajwid · Makhraj · Baca Al-Quran",desc:"Baca Quran dengan benar, paham doa harian, bisa ngajari anak ngaji di rumah.",c:t.p},
+    {name:"Mandarin 中文",letter:"中",tag:"Pinyin · Karakter Dasar · Percakapan",desc:"Challenge diri sendiri. Bahasa Mandarin makin dibutuhkan — mulai dari nol juga bisa.",c:t.or},
   ];
 
   return <section style={{background:t.bg,padding:"80px 0"}}><W>
     <Rv><div style={{marginBottom:36}}><h2 style={{fontFamily:fh,fontSize:36,fontWeight:800,color:t.tx,margin:0,letterSpacing:-0.5}}>Mau Belajar Apa, Ma?</h2><p style={{fontFamily:fb,fontSize:15,color:t.sub,marginTop:8,lineHeight:1.7}}>Kurikulum berbasis level — Mama mulai dari titik yang pas, nggak dipaksa ikut yang terlalu susah.</p></div></Rv>
 
-    {/* Courses — warm card style */}
-    <div className="grid-3" style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:14,marginBottom:48}}>
+    {/* Courses — compact horizontal: left border + letter badge + content */}
+    <div className="grid-3" style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:12,marginBottom:48}}>
       {courses.map((c,i)=>{const[h,setH]=useState(false);return <Rv key={i} delay={0.04*(i+1)}>
-        <div onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)} style={{background:`${c.c}08`,borderRadius:18,padding:"24px 22px",border:`1.5px solid ${h?c.c+"30":c.c+"12"}`,boxShadow:h?t.ch:t.cs,transition:"all 0.35s",transform:h?"translateY(-3px)":"none"}}>
-          <div style={{width:4,height:28,borderRadius:2,background:c.c,marginBottom:14}}/>
-          <h3 style={{fontFamily:fh,fontSize:17,fontWeight:700,color:t.tx,margin:"0 0 4px"}}>{c.name}</h3>
-          <div style={{fontFamily:fb,fontSize:11,color:c.c,fontWeight:600,marginBottom:8}}>{c.tag}</div>
-          <p style={{fontFamily:fb,fontSize:13,color:t.sub,lineHeight:1.6,margin:"0 0 16px"}}>{c.desc}</p>
-          <a href={`https://wa.me/6281384253679?text=Halo+EduKazia%2C+saya+Mama+yang+mau+belajar+${encodeURIComponent(c.name)}`} target="_blank" rel="noreferrer" style={{fontFamily:fh,fontWeight:700,fontSize:11,color:t.tx,background:t.card,borderRadius:8,padding:"9px 18px",textDecoration:"none",display:"inline-block",border:`1px solid ${t.cb}`}}>Daftar →</a>
+        <div onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)} style={{background:`${c.c}06`,borderLeft:`4px solid ${c.c}`,borderRadius:"4px 14px 14px 4px",padding:"14px 14px",boxShadow:h?`0 6px 20px ${c.c}18`:`0 1px 3px ${c.c}08`,transition:"all 0.3s",transform:h?"translateY(-2px)":"none",display:"flex",gap:12,alignItems:"flex-start"}}>
+          <div style={{width:42,height:42,borderRadius:10,background:`linear-gradient(135deg,${c.c},${c.c}CC)`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,color:"#fff",fontFamily:fh,fontWeight:800,fontSize:c.letter.length>1?13:18,boxShadow:`0 2px 8px ${c.c}30`,letterSpacing:c.letter.length>1?-0.3:0}}>{c.letter}</div>
+          <div style={{flex:1,minWidth:0}}>
+            <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:8,marginBottom:3}}>
+              <h3 style={{fontFamily:fh,fontSize:14,fontWeight:700,color:t.tx,margin:0,lineHeight:1.2}}>{c.name}</h3>
+              <a href={`https://wa.me/6281384253679?text=Halo+EduKazia%2C+saya+Mama+yang+mau+belajar+${encodeURIComponent(c.name)}`} target="_blank" rel="noreferrer" style={{fontFamily:fh,fontWeight:700,fontSize:10,color:c.c,background:`${c.c}10`,borderRadius:6,padding:"5px 10px",textDecoration:"none",whiteSpace:"nowrap",border:`1px solid ${c.c}25`,flexShrink:0}}>Daftar →</a>
+            </div>
+            <div style={{fontFamily:fb,fontSize:10,color:c.c,fontWeight:600,marginBottom:4,letterSpacing:0.1}}>{c.tag}</div>
+            <p style={{fontFamily:fb,fontSize:12,color:t.sub,lineHeight:1.45,margin:0}}>{c.desc}</p>
+          </div>
         </div>
       </Rv>;})}
     </div>
@@ -350,9 +355,9 @@ function TesLevelAndFAQ(){
         <Rv><h2 style={{fontFamily:fh,fontSize:32,fontWeight:800,color:t.tx,margin:"0 0 14px",letterSpacing:-0.5}}>Mulai dari Tes Level</h2>
         <p style={{fontFamily:fb,fontSize:14,color:t.sub,lineHeight:1.7,marginBottom:28}}>Supaya tutor tahu level Mama sekarang — dan belajar nggak salah arah.</p></Rv>
         <Rv delay={0.05}><div style={{display:"flex",flexDirection:"column",gap:10}}>
-          {[{n:"1",icon:"📲",title:"Chat WhatsApp",desc:"Bilang Mama mau belajar apa."},{n:"2",icon:"📝",title:"Tes Level Online",desc:"30 menit via Zoom. Santai, nggak ada benar-salah."},{n:"3",icon:"📊",title:"Terima Laporan",desc:"Level Mama, rekomendasi kelas & jadwal."},{n:"4",icon:"🚀",title:"Mulai Belajar",desc:"Pilih kelas, mulai sesuai level Mama."}].map((s,i)=>
+          {[{n:"1",Icon:MessageSquare,title:"Chat WhatsApp",desc:"Bilang Mama mau belajar apa."},{n:"2",Icon:ClipboardList,title:"Tes Level Online",desc:"30 menit via Zoom. Santai, nggak ada benar-salah."},{n:"3",Icon:BarChart3,title:"Terima Laporan",desc:"Level Mama, rekomendasi kelas & jadwal."},{n:"4",Icon:Rocket,title:"Mulai Belajar",desc:"Pilih kelas, mulai sesuai level Mama."}].map((s,i)=>
             <div key={i} style={{display:"flex",gap:12,alignItems:"flex-start"}}>
-              <div style={{width:34,height:34,borderRadius:10,background:t.pS,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,flexShrink:0}}>{s.icon}</div>
+              <div style={{width:34,height:34,borderRadius:10,background:t.pS,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}><s.Icon size={16} color={t.p} strokeWidth={2.2}/></div>
               <div><div style={{fontFamily:fh,fontSize:13,fontWeight:700,color:t.tx,margin:"0 0 2px"}}>Step {s.n}: {s.title}</div><div style={{fontFamily:fb,fontSize:12,color:t.mu}}>{s.desc}</div></div>
             </div>
           )}
@@ -368,7 +373,7 @@ function TesLevelAndFAQ(){
           {faqs.map(([q,a],i)=><div key={i} style={{background:t.card,borderRadius:12,marginBottom:8,border:`1px solid ${op===i?t.p+"25":t.cb}`,overflow:"hidden",transition:"border 0.2s"}}>
             <button onClick={()=>setOp(op===i?null:i)} style={{width:"100%",display:"flex",justifyContent:"space-between",alignItems:"center",padding:"14px 16px",background:"none",border:"none",cursor:"pointer",textAlign:"left"}}>
               <span style={{fontFamily:fh,fontSize:13,fontWeight:600,color:op===i?t.tx:t.sub,flex:1}}>{q}</span>
-              <span style={{fontSize:16,color:t.p,transition:"transform 0.3s",transform:op===i?"rotate(45deg)":"none",fontWeight:300}}>+</span>
+              <span style={{color:t.p,transition:"transform 0.3s",transform:op===i?"rotate(45deg)":"none",display:"inline-flex",alignItems:"center",justifyContent:"center"}}><Plus size={18} strokeWidth={2.2}/></span>
             </button>
             <div style={{maxHeight:op===i?160:0,transition:"max-height 0.3s ease",overflow:"hidden"}}><p style={{fontFamily:fb,fontSize:13,color:t.sub,lineHeight:1.7,padding:"0 16px 14px"}}>{a}</p></div>
           </div>)}
@@ -386,7 +391,7 @@ function CTAFinal(){
     <div style={{background:t.cta,borderRadius:28,overflow:"hidden",position:"relative"}}>
       <div style={{position:"absolute",top:-30,right:-30,width:150,height:150,borderRadius:"50%",background:"rgba(255,255,255,0.06)"}}/>
       <div style={{padding:"52px 44px",textAlign:"center",position:"relative",zIndex:1}}>
-        <div style={{fontSize:32,marginBottom:10,animation:"bounce 2s ease infinite"}}>💪</div>
+        <div style={{marginBottom:14,animation:"bounce 2s ease infinite",display:"inline-flex",width:64,height:64,borderRadius:18,background:"rgba(255,255,255,0.12)",alignItems:"center",justifyContent:"center",border:"1px solid rgba(255,255,255,0.15)"}}><Sparkles size={32} color="#fff" strokeWidth={2}/></div>
         <h2 style={{fontFamily:fh,fontSize:30,fontWeight:800,color:"#fff",margin:"0 0 10px",lineHeight:1.2}}>Mama Belajar,<br/>Anak Ikut Terinspirasi.</h2>
         <p style={{fontFamily:fb,fontSize:15,color:"rgba(255,255,255,0.6)",lineHeight:1.7,marginBottom:28,maxWidth:440,marginLeft:"auto",marginRight:"auto"}}>Konsultasi gratis, tanpa komitmen. Mama nggak harus sempurna — cukup mulai.</p>
         <a href={WA} target="_blank" rel="noreferrer" style={{fontFamily:fh,fontWeight:700,fontSize:15,color:t.goldT,background:"#E6B800",borderRadius:14,padding:"16px 36px",textDecoration:"none",display:"inline-flex",alignItems:"center",gap:8,boxShadow:"0 4px 20px rgba(230,184,0,0.25)"}}><WAIcon size={16} color="#1A1535"/> Daftar Kelas untuk Mama</a>

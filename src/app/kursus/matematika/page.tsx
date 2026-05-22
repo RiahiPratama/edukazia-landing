@@ -3,7 +3,7 @@
 "use client";
 
 import { useState, useEffect, useRef, createContext, useContext, Fragment } from "react";
-import { BarChart3, ClipboardCheck, GraduationCap, Lightbulb, MessageSquare, Package, Puzzle, Users, Zap } from "lucide-react";
+import { BarChart3, BookOpen, Calculator, Check, ClipboardCheck, GraduationCap, Lightbulb, MessageSquare, Package, Puzzle, Sigma, Users, Zap } from "lucide-react";
 
 const TX = createContext();
 const useT = () => useContext(TX);
@@ -54,8 +54,22 @@ html{scroll-behavior:smooth}body{overflow-x:hidden;-webkit-font-smoothing:antial
   .desktop-menu{display:none!important}.mobile-menu-btn{display:flex!important}
   .hide-mobile{display:none!important}.grid-2{grid-template-columns:1fr!important}
   .grid-3{grid-template-columns:1fr!important}
-  .hero-flex{flex-direction:column!important;text-align:center!important}
-  .hero-right{display:none!important}.story-flex{flex-direction:column!important}
+  .hero-flex{flex-direction:column!important;text-align:center!important;gap:20px!important}.hero-flex>div:first-child{flex:0 1 auto!important;width:100%!important}
+  .hero-right{display:block!important;flex:0 0 auto!important;width:100%!important;max-width:340px!important;margin:0 auto!important;position:relative!important;overflow:visible!important}.hero-right>div{width:100%!important;max-width:100%!important}.story-flex{flex-direction:column!important}
+  /* Audience selector — mobile stacked horizontal compact (~75px tall) */
+  .audience-grid{grid-template-columns:1fr!important;gap:8px!important;max-width:none!important}
+  .audience-tab{flex-direction:row!important;text-align:left!important;padding:12px 14px!important;align-items:center!important;gap:14px!important}
+  .audience-tab .audience-icon{width:44px!important;height:44px!important;border-radius:12px!important}
+  .audience-tab .audience-text{flex:1!important;min-width:0!important}
+  .audience-tab .audience-check{position:static!important;top:auto!important;right:auto!important;flex-shrink:0!important;order:99!important;width:26px!important;height:26px!important}
+  /* ClassTypes — LOCK horizontal di mobile, smaller badge */
+  .classtype-card-row{flex-direction:row!important}
+  .classtype-ratio-panel{width:76px!important;padding:12px 8px!important}
+  .classtype-card-row[style*="2px solid"] .classtype-ratio-panel{width:84px!important}
+  .classtype-ratio-num{font-size:22px!important}
+  .classtype-content{padding:12px 14px!important}
+  .classtype-content h3{font-size:15px!important;margin-bottom:3px!important}
+  .classtype-content p{font-size:12px!important;line-height:1.45!important;margin-bottom:8px!important}
 }
 @media(min-width:769px){.mobile-menu-btn{display:none!important}}
 `;
@@ -74,13 +88,13 @@ function Nav({isDark,toggle}){
         <EdukaziaLogo variant={t.m==='dark'||!sc?'white':'default'} size="md" href="/"/>{sc&&<span className="hide-mobile" style={{fontFamily:fb,fontSize:11,fontWeight:600,color:t.p,background:t.pS,padding:"4px 12px",borderRadius:100,marginLeft:8,whiteSpace:"nowrap"}}>Bimbel dari Maluku Utara yang punya LMS Keren!</span>}
         <div className="desktop-menu" style={{display:"flex",alignItems:"center",gap:4}}>
           {dropdowns.map((dd,di)=><div key={di} style={{position:"relative"}} onMouseEnter={()=>setOpenDD(di)} onMouseLeave={()=>setOpenDD(null)}><button style={{fontFamily:fb,fontSize:13,fontWeight:600,color:sc?t.sub:"rgba(255,255,255,0.7)",background:"none",border:"none",cursor:"pointer",padding:"8px 12px",borderRadius:8,display:"flex",alignItems:"center",gap:5}}>{dd.label}<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></button>{openDD===di&&<div style={{position:"absolute",top:"100%",left:0,background:t.card,borderRadius:14,border:`1px solid ${t.cb}`,boxShadow:"0 12px 40px rgba(0,0,0,0.15)",padding:6,minWidth:220,zIndex:100}}>{dd.items.map((item,ii)=><a key={ii} href={item.href} style={{display:"block",padding:"10px 16px",borderRadius:10,textDecoration:"none",fontFamily:fb,fontSize:13,fontWeight:600,color:t.tx}} onMouseEnter={e=>e.currentTarget.style.background=t.pS} onMouseLeave={e=>e.currentTarget.style.background="transparent"}>{item.text}</a>)}</div>}</div>)}
-          <button onClick={toggle} style={{width:36,height:36,borderRadius:10,background:sc?t.pS:"rgba(255,255,255,0.08)",border:`1px solid ${sc?t.cb:"rgba(255,255,255,0.08)"}`,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",marginLeft:8}}>{isDark?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={sc?t.tx:"#fff"} strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>:<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={sc?t.tx:"#fff"} strokeWidth="2" strokeLinecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>}</button>
+          <button onClick={toggle} style={{width:36,height:36,borderRadius:10,background:sc?"rgba(92,79,229,0.08)":"rgba(255,255,255,0.1)",border:`1.5px solid ${sc?"rgba(92,79,229,0.28)":"rgba(255,255,255,0.2)"}`,boxShadow:sc?"0 1px 3px rgba(0,0,0,0.08)":"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",marginLeft:8}}>{isDark?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={sc?t.tx:"#fff"} strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>:<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={sc?t.tx:"#fff"} strokeWidth="2" strokeLinecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>}</button>
           <a href="https://app.edukazia.com" style={{fontFamily:fh,fontWeight:700,fontSize:13,color:"#fff",background:"linear-gradient(135deg,#5C4FE5,#7B6FF0)",borderRadius:12,padding:"10px 22px",textDecoration:"none",marginLeft:8}}>Login ke Portal</a>
         </div>
         <div className="mobile-menu-btn" style={{display:"none",alignItems:"center",gap:8}}>
           <a href="https://app.edukazia.com" style={{fontFamily:fh,fontWeight:700,fontSize:11,color:"#fff",background:"linear-gradient(135deg,#5C4FE5,#7B6FF0)",borderRadius:10,padding:"8px 14px",textDecoration:"none",whiteSpace:"nowrap"}}>Login ke Portal</a>
-          <button onClick={toggle} style={{width:36,height:36,borderRadius:10,background:"rgba(255,255,255,0.08)",border:"1px solid rgba(255,255,255,0.08)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>{isDark?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>:<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>}</button>
-          <button onClick={()=>setMob(m=>!m)} style={{width:36,height:36,borderRadius:10,background:"rgba(255,255,255,0.08)",border:"1px solid rgba(255,255,255,0.08)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round">{mob?<><path d="M18 6L6 18"/><path d="M6 6l12 12"/></>:<><path d="M3 12h18"/><path d="M3 6h18"/><path d="M3 18h18"/></>}</svg></button>
+          <button onClick={toggle} style={{width:36,height:36,borderRadius:10,background:sc?"rgba(92,79,229,0.08)":"rgba(255,255,255,0.1)",border:sc?"1.5px solid rgba(92,79,229,0.28)":"1.5px solid rgba(255,255,255,0.2)",boxShadow:sc?"0 1px 3px rgba(0,0,0,0.08)":"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>{isDark?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={sc?t.tx:"#fff"} strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>:<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={sc?t.tx:"#fff"} strokeWidth="2" strokeLinecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>}</button>
+          <button onClick={()=>setMob(m=>!m)} style={{width:36,height:36,borderRadius:10,background:sc?"rgba(92,79,229,0.08)":"rgba(255,255,255,0.1)",border:sc?"1.5px solid rgba(92,79,229,0.28)":"1.5px solid rgba(255,255,255,0.2)",boxShadow:sc?"0 1px 3px rgba(0,0,0,0.08)":"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={sc?t.tx:"#fff"} strokeWidth="2" strokeLinecap="round">{mob?<><path d="M18 6L6 18"/><path d="M6 6l12 12"/></>:<><path d="M3 12h18"/><path d="M3 6h18"/><path d="M3 18h18"/></>}</svg></button>
         </div>
       </W>
     </nav>
@@ -198,7 +212,7 @@ function AudienceSection(){
   const[tab,setTab]=useState(0);
   const audiences = [
     {
-      label:"Anak SD (7–13 thn)",icon:"gradcap",c:t.p,
+      label:"Anak SD",ageRange:"7–13 thn",sub:"Fondasi logika & konsep",Icon:Calculator,c:t.p,
       headline:"Fondasi Logika yang Benar, Bukan Hafalan Rumus",
       desc:"Di SD, anak belajar cara mengerjakan soal. Metode Singapura mengajarkan anak memahami KENAPA — sehingga ketika soal berubah bentuk, anak tetap bisa.",
       pains:["Anak bisa ngerjain soal yang sama, tapi kalau soalnya diubah dikit — bingung","Hafal perkalian tapi tidak paham konsep perkalian itu apa","Soal cerita = momok yang paling ditakuti"],
@@ -207,7 +221,7 @@ function AudienceSection(){
       waText:"Halo+EduKazia%2C+saya+ingin+daftarkan+anak+untuk+kursus+Matematika+Metode+Singapura.+Nama%3A+...+Usia%3A+...",
     },
     {
-      label:"Remaja SMP–SMA (13–18 thn)",icon:"gradcap",c:t.bl,
+      label:"Remaja SMP–SMA",ageRange:"13–18 thn",sub:"Bridging visual → abstrak",Icon:Sigma,c:t.bl,
       headline:"Aljabar & Geometri Tidak Harus Bikin Pusing",
       desc:"Materi SMP–SMA jauh lebih abstrak dari SD. Metode Singapura membantu remaja bridging dari visual ke abstrak secara bertahap — tidak lompat langsung ke rumus.",
       pains:["Materi SMP tiba-tiba abstrak, anak kehilangan kepercayaan diri","Aljabar terasa kayak bahasa asing yang tidak masuk akal","Guru di sekolah terlalu cepat, anak ketinggalan"],
@@ -224,57 +238,64 @@ function AudienceSection(){
       <p style={{fontFamily:fb,fontSize:15,color:t.sub,marginTop:10,lineHeight:1.7}}>Khusus untuk anak dan remaja. Kurikulum terstruktur sesuai level.</p>
     </div></Rv>
 
-    {/* Graph-paper inspired cards — 2 columns */}
+    {/* Tab selector — premium tile with math-themed icons */}
     <Rv delay={0.05}>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16,marginBottom:44}} className="grid-2">
+      <div className="audience-grid" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14,marginBottom:44,maxWidth:680,marginLeft:"auto",marginRight:"auto"}}>
         {audiences.map((au,i)=>{
           const active = tab===i;
-          const formulas = ["3 + 4 = ?","x² + 2x = 15"];
-          const answers = ["= 7 ✓","x = 3 ✓"];
-          return <div key={i} onClick={()=>setTab(i)} style={{
-            borderRadius:20,overflow:"hidden",position:"relative",cursor:"pointer",
-            transition:"all 0.5s cubic-bezier(0.22,1,0.36,1)",
-            transform:active?"scale(1.02)":"scale(0.98)",
-            opacity:active?1:0.85,
-            background:active?au.c:t.card,
-            border:active?`2px solid ${au.c}`:`2px solid ${t.cb}`,
-            boxShadow:active?`0 20px 60px ${au.c}25`:"0 4px 20px rgba(0,0,0,0.06)",
+          return <button key={i} onClick={()=>setTab(i)} className="audience-tab" style={{
+            background: active ? `linear-gradient(135deg, ${au.c}0E 0%, ${au.c}1F 100%)` : t.card,
+            border: active ? `2px solid ${au.c}` : `1.5px solid ${t.cb}`,
+            borderRadius: 18,
+            padding: "22px 16px",
+            cursor: "pointer",
+            transition: "all 0.4s cubic-bezier(0.22,1,0.36,1)",
+            transform: active ? "translateY(-3px)" : "none",
+            boxShadow: active ? `0 14px 36px ${au.c}28, 0 0 0 1px ${au.c}10` : t.cs,
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 12,
+            textAlign: "center",
+            outline: "none",
+            overflow: "hidden",
           }}>
-            {/* Grid paper pattern */}
-            <svg style={{position:"absolute",inset:0,width:"100%",height:"100%",opacity:active?0.06:0.03,transition:"opacity 0.4s"}}>
-              <defs><pattern id={`grid${i}`} width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke={active?"#fff":au.c} strokeWidth="0.5"/></pattern></defs>
-              <rect width="100%" height="100%" fill={`url(#grid${i})`}/>
+            {/* Decorative gradient orb */}
+            {active && <div style={{position:"absolute",top:-20,right:-20,width:80,height:80,borderRadius:"50%",background:`radial-gradient(circle,${au.c}25 0%,transparent 70%)`,pointerEvents:"none"}}/>}
+
+            {/* Subtle grid paper pattern background (math identity) */}
+            <svg className="audience-grid-bg" style={{position:"absolute",inset:0,width:"100%",height:"100%",opacity:active?0.08:0.04,transition:"opacity 0.4s",pointerEvents:"none"}}>
+              <defs><pattern id={`mathGrid${i}`} width="16" height="16" patternUnits="userSpaceOnUse"><path d="M 16 0 L 0 0 0 16" fill="none" stroke={au.c} strokeWidth="0.5"/></pattern></defs>
+              <rect width="100%" height="100%" fill={`url(#mathGrid${i})`}/>
             </svg>
 
-            <div style={{position:"relative",padding:"28px 26px 24px"}}>
-              {/* "Equation" watermark */}
-              <div style={{fontFamily:"monospace",fontSize:28,fontWeight:700,color:active?"rgba(255,255,255,0.1)":`${au.c}10`,marginBottom:4,transition:"color 0.3s"}}>{formulas[i]}</div>
-              <div style={{fontFamily:"monospace",fontSize:16,color:active?"rgba(255,255,255,0.2)":`${au.c}20`,marginBottom:12,transition:"color 0.3s"}}>{answers[i]}</div>
-
-              <h3 style={{fontFamily:fh,fontSize:22,fontWeight:800,color:active?"#fff":t.tx,margin:"0 0 14px",lineHeight:1.2,transition:"color 0.3s"}}>{au.label}</h3>
-
-              {/* Before → After as "problem solving" steps */}
-              <div style={{display:"flex",gap:8,marginBottom:14}}>
-                <div style={{flex:1,background:active?"rgba(255,255,255,0.08)":`${t.coral}05`,borderRadius:10,padding:"12px",border:active?"1px solid rgba(255,255,255,0.08)":`1px solid ${t.coral}06`,textAlign:"center",transition:"all 0.3s"}}>
-                  <div style={{fontFamily:"monospace",fontSize:8,fontWeight:700,color:active?"rgba(255,255,255,0.4)":t.coral,marginBottom:3}}>SEBELUM</div>
-                  <div style={{fontFamily:fh,fontSize:11,fontWeight:700,color:active?"rgba(255,255,255,0.7)":t.coral,lineHeight:1.3}}>{i===0?"Hafal cara, soal diubah = bingung":"Aljabar = bahasa asing"}</div>
-                </div>
-                <div style={{display:"flex",alignItems:"center",fontSize:14,color:active?"rgba(255,255,255,0.2)":t.mu}}>→</div>
-                <div style={{flex:1,background:active?"rgba(255,255,255,0.12)":`${au.c}06`,borderRadius:10,padding:"12px",border:active?"1px solid rgba(255,255,255,0.12)":`1px solid ${au.c}08`,textAlign:"center",transition:"all 0.3s"}}>
-                  <div style={{fontFamily:"monospace",fontSize:8,fontWeight:700,color:active?"rgba(255,255,255,0.5)":au.c,marginBottom:3}}>SESUDAH</div>
-                  <div style={{fontFamily:fh,fontSize:11,fontWeight:700,color:active?"#fff":au.c,lineHeight:1.3}}>{i===0?"Paham pola, variasi soal bisa":"Mulai 'lihat' pola aljabar"}</div>
-                </div>
-              </div>
-
-              {/* Action */}
-              <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-                <span style={{fontFamily:fb,fontSize:11,fontWeight:600,color:active?"rgba(255,255,255,0.6)":t.mu}}>{active?"Sedang dilihat":"Klik untuk lihat"}</span>
-                <div style={{width:24,height:24,borderRadius:6,background:active?"rgba(255,255,255,0.12)":`${au.c}08`,display:"flex",alignItems:"center",justifyContent:"center",border:active?"1px solid rgba(255,255,255,0.1)":`1px solid ${au.c}10`,fontFamily:"monospace",fontSize:10,fontWeight:800,color:active?"#fff":au.c}}>
-                  {active?"✓":"∑"}
-                </div>
-              </div>
+            {/* Math icon container */}
+            <div className="audience-icon" style={{
+              width: 52, height: 52, borderRadius: 14,
+              background: active ? `linear-gradient(135deg, ${au.c}, ${au.c}DD)` : `${au.c}12`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              transition: "all 0.4s cubic-bezier(0.22,1,0.36,1)",
+              boxShadow: active ? `0 6px 20px ${au.c}45` : "none",
+              transform: active ? "scale(1.05)" : "scale(1)",
+              flexShrink: 0,
+              zIndex: 1,
+            }}>
+              <au.Icon size={26} color={active?"#fff":au.c} strokeWidth={2.2}/>
             </div>
-          </div>;
+
+            {/* Text block */}
+            <div className="audience-text" style={{zIndex:1}}>
+              <div style={{fontFamily:fh,fontSize:11,fontWeight:700,color:au.c,marginBottom:3,letterSpacing:0.5,textTransform:"uppercase"}}>{au.ageRange}</div>
+              <div style={{fontFamily:fh,fontSize:15,fontWeight:800,color:active?au.c:t.tx,marginBottom:4,letterSpacing:-0.3,lineHeight:1.2}}>{au.label}</div>
+              <div style={{fontFamily:fb,fontSize:11,color:t.mu,lineHeight:1.4}}>{au.sub}</div>
+            </div>
+
+            {/* Active checkmark */}
+            {active && <div className="audience-check" style={{position:"absolute",top:12,right:12,width:24,height:24,borderRadius:"50%",background:au.c,display:"flex",alignItems:"center",justifyContent:"center",boxShadow:`0 3px 10px ${au.c}55`,zIndex:2}}>
+              <Check size={13} color="#fff" strokeWidth={3}/>
+            </div>}
+          </button>;
         })}
       </div>
     </Rv>
@@ -320,7 +341,7 @@ function AudienceSection(){
 }
 
 // ═══════ 4. CLASS TYPES ═══════
-function ClassTypes(){const t=useT();const classes=[{name:"Reguler",ratio:"1 : 8",desc:"Belajar Matematika bareng teman. Problem solving jadi seru.",c:t.v,tags:["Biaya ringan","Diskusi bareng","Seru"]},{name:"Semi Privat",ratio:"1 : 4",desc:"Kelompok kecil — tutor lebih kenal cara berpikir anak.",c:t.or,tags:["Perhatian lebih","Kelompok nyaman"]},{name:"Privat",ratio:"1 : 1",desc:"Perhatian 100%. Tutor tahu persis di mana anak stuck dan bagaimana cara menjelaskannya.",c:t.p,rec:true,tags:["Perhatian penuh","Tahu titik stuck anak","Reschedule gratis"]}];return <section style={{background:t.bg,padding:"80px 0"}}><W><Rv><div style={{textAlign:"center",marginBottom:44}}><h2 style={{fontFamily:fh,fontSize:36,fontWeight:800,color:t.tx,margin:0,letterSpacing:-0.5}}>Pilih Tipe Kelas</h2><p style={{fontFamily:fb,fontSize:15,color:t.sub,marginTop:10,lineHeight:1.7}}>Kurikulum Metode Singapura untuk semua tipe.</p></div></Rv><div style={{display:"flex",flexDirection:"column",gap:12,maxWidth:800,margin:"0 auto"}}>{classes.map((c,i)=>{const[h,setH]=useState(false);return <Rv key={i} delay={0.06*(i+1)}><div onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)} style={{background:t.card,borderRadius:18,overflow:"hidden",border:c.rec?`2px solid ${c.c}35`:`1.5px solid ${h?c.c+"25":t.cb}`,boxShadow:c.rec?`0 6px 30px ${c.c}10`:h?t.ch:t.cs,transition:"all 0.35s",transform:h?"translateX(4px)":"none",display:"flex"}} className="story-flex"><div style={{width:c.rec?110:90,flexShrink:0,background:c.rec?`linear-gradient(180deg,${c.c},${c.c}BB)`:`linear-gradient(180deg,${c.c}20,${c.c}08)`,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"20px 12px"}}>{c.rec&&<div style={{fontFamily:fb,fontSize:7,fontWeight:700,color:"#fff",background:"rgba(255,255,255,0.2)",padding:"2px 8px",borderRadius:100,marginBottom:8,textTransform:"uppercase",letterSpacing:0.5}}>Rekomendasi</div>}<div style={{fontFamily:fh,fontSize:26,fontWeight:800,color:c.rec?"#fff":c.c,lineHeight:1}}>{c.ratio}</div><div style={{fontFamily:fb,fontSize:7,color:c.rec?"rgba(255,255,255,0.5)":t.mu,marginTop:3}}>tutor : siswa</div></div><div style={{flex:1,padding:"18px 22px",display:"flex",flexDirection:"column",justifyContent:"center"}}><h3 style={{fontFamily:fh,fontSize:c.rec?19:16,fontWeight:800,color:t.tx,margin:"0 0 4px"}}>{c.name}</h3><p style={{fontFamily:fb,fontSize:13,color:t.sub,lineHeight:1.6,margin:"0 0 10px"}}>{c.desc}</p><div style={{display:"flex",flexWrap:"wrap",gap:5}}>{c.tags.map(tg=><span key={tg} style={{fontFamily:fb,fontSize:10,fontWeight:600,color:c.c,background:`${c.c}08`,padding:"3px 10px",borderRadius:6,border:`1px solid ${c.c}10`}}>{tg}</span>)}</div></div></div></Rv>})}</div></W></section>;}
+function ClassTypes(){const t=useT();const classes=[{name:"Reguler",ratio:"1 : 8",desc:"Belajar Matematika bareng teman. Problem solving jadi seru.",c:t.v,tags:["Biaya ringan","Diskusi bareng","Seru"]},{name:"Semi Privat",ratio:"1 : 4",desc:"Kelompok kecil — tutor lebih kenal cara berpikir anak.",c:t.or,tags:["Perhatian lebih","Kelompok nyaman"]},{name:"Privat",ratio:"1 : 1",desc:"Perhatian 100%. Tutor tahu persis di mana anak stuck dan bagaimana cara menjelaskannya.",c:t.p,rec:true,tags:["Perhatian penuh","Tahu titik stuck anak","Reschedule gratis"]}];return <section style={{background:t.bg,padding:"80px 0"}}><W><Rv><div style={{textAlign:"center",marginBottom:44}}><h2 style={{fontFamily:fh,fontSize:36,fontWeight:800,color:t.tx,margin:0,letterSpacing:-0.5}}>Pilih Tipe Kelas</h2><p style={{fontFamily:fb,fontSize:15,color:t.sub,marginTop:10,lineHeight:1.7}}>Kurikulum Metode Singapura untuk semua tipe.</p></div></Rv><div style={{display:"flex",flexDirection:"column",gap:12,maxWidth:800,margin:"0 auto"}}>{classes.map((c,i)=>{const[h,setH]=useState(false);return <Rv key={i} delay={0.06*(i+1)}><div onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)} style={{background:t.card,borderRadius:18,overflow:"hidden",border:c.rec?`2px solid ${c.c}35`:`1.5px solid ${h?c.c+"25":t.cb}`,boxShadow:c.rec?`0 6px 30px ${c.c}10`:h?t.ch:t.cs,transition:"all 0.35s",transform:h?"translateX(4px)":"none",display:"flex"}} className="classtype-card-row"><div className="classtype-ratio-panel" style={{width:c.rec?110:90,flexShrink:0,background:c.rec?`linear-gradient(180deg,${c.c},${c.c}BB)`:`linear-gradient(180deg,${c.c}20,${c.c}08)`,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"20px 12px"}}>{c.rec&&<div style={{fontFamily:fb,fontSize:7,fontWeight:700,color:"#fff",background:"rgba(255,255,255,0.2)",padding:"2px 8px",borderRadius:100,marginBottom:8,textTransform:"uppercase",letterSpacing:0.5}}>Rekomendasi</div>}<div className="classtype-ratio-num" style={{fontFamily:fh,fontSize:26,fontWeight:800,color:c.rec?"#fff":c.c,lineHeight:1}}>{c.ratio}</div><div style={{fontFamily:fb,fontSize:7,color:c.rec?"rgba(255,255,255,0.5)":t.mu,marginTop:3}}>tutor : siswa</div></div><div className="classtype-content" style={{flex:1,padding:"18px 22px",display:"flex",flexDirection:"column",justifyContent:"center",minWidth:0}}><h3 style={{fontFamily:fh,fontSize:c.rec?19:16,fontWeight:800,color:t.tx,margin:"0 0 4px"}}>{c.name}</h3><p style={{fontFamily:fb,fontSize:13,color:t.sub,lineHeight:1.5,margin:"0 0 10px"}}>{c.desc}</p><div style={{display:"flex",flexWrap:"wrap",gap:5}}>{c.tags.map(tg=><span key={tg} style={{fontFamily:fb,fontSize:10,fontWeight:600,color:c.c,background:`${c.c}08`,padding:"3px 10px",borderRadius:6,border:`1px solid ${c.c}10`}}>{tg}</span>)}</div></div></div></Rv>})}</div></W></section>;}
 
 // ═══════ 5. TES LEVEL + FAQ ═══════
 function TesLevelAndFAQ(){const t=useT();const[op,setOp]=useState(null);const faqs=[["Apa bedanya dengan les Matematika biasa?","Les biasa ajarkan cara ngerjain soal. Metode Singapura ajarkan anak PAHAM konsepnya — dari benda nyata, ke gambar, baru ke rumus (CPA)."],["Anak saya sudah SMP, bisa pakai Metode Singapura?","Bisa. Metode Singapura bukan cuma untuk SD. Bridging visual → abstrak sangat membantu remaja yang struggle dengan aljabar dan geometri."],["Kurikulumnya bagaimana?","Terstruktur berbasis level dari Tes Level. Anak belajar sesuai kemampuannya, bukan sesuai kelas sekolah."],["Jadwalnya bagaimana?","Privat 100% fleksibel. Reguler & Semi Privat ada slot pilihan."],["Ada rekaman kelas?","Semua sesi direkam."],["Pembayarannya bagaimana?","Per paket — ringan. Detail harga via WhatsApp."]];return <section id="tes-level" style={{background:t.bgW,padding:"80px 0"}}><W><div className="story-flex" style={{display:"flex",gap:40}}><div style={{flex:"1 1 360px"}}><Rv><h2 style={{fontFamily:fh,fontSize:32,fontWeight:800,color:t.tx,margin:"0 0 14px",letterSpacing:-0.5}}>Mulai dari Tes Level</h2><p style={{fontFamily:fb,fontSize:14,color:t.sub,lineHeight:1.7,marginBottom:28}}>Supaya tutor tahu fondasi anak di mana — dan tahu dari mana harus bridging.</p></Rv><Rv delay={0.05}><div style={{display:"flex",flexDirection:"column",gap:10}}>{[{n:"1",icon:<MessageSquare size={22} color={t.p}/>,title:"Chat WhatsApp",desc:"Bilang usia anak dan kelas sekolah."},{n:"2",icon:<ClipboardCheck size={22} color={t.p}/>,title:"Tes Level Online",desc:"30 menit via Zoom. Soal diagnostik, bukan ujian."},{n:"3",icon:<BarChart3 size={22} color={t.p}/>,title:"Terima Laporan",desc:"Fondasi mana yang kuat, mana yang perlu diperkuat."},{n:"4",icon:<Zap size={22} color={t.p}/>,title:"Mulai Belajar",desc:"Metode Singapura sesuai level anak."}].map((s,i)=><div key={i} style={{display:"flex",gap:12,alignItems:"flex-start"}}><div style={{display:"flex",flexDirection:"column",alignItems:"center",flexShrink:0}}><div style={{width:34,height:34,borderRadius:10,background:t.pS,display:"flex",alignItems:"center",justifyContent:"center"}}>{ s.icon==="gradcap"?<GraduationCap size={16} color="currentColor"/>:s.icon==="lightbulb"?<Lightbulb size={16} color="currentColor"/>:<Users size={16} color="currentColor"/>}</div>{i<3&&<div style={{width:2,height:20,background:t.cb}}/>}</div><div style={{paddingBottom:i<3?8:0}}><div style={{fontFamily:fh,fontSize:13,fontWeight:700,color:t.tx,margin:"0 0 2px"}}>Step {s.n}: {s.title}</div><div style={{fontFamily:fb,fontSize:12,color:t.mu}}>{s.desc}</div></div></div>)}</div></Rv><Rv delay={0.1}><div style={{marginTop:24}}><a href={`https://wa.me/6281384253679?text=Halo+EduKazia%2C+saya+ingin+Tes+Level+Matematika+untuk+anak`} target="_blank" rel="noreferrer" style={{fontFamily:fh,fontWeight:700,fontSize:13,color:t.goldT,background:t.gold,borderRadius:12,padding:"13px 28px",textDecoration:"none",display:"inline-flex",alignItems:"center",gap:6,boxShadow:"0 4px 16px rgba(230,184,0,0.2)"}}><WAIcon size={14} color="#1A1535"/> Daftar Tes Level</a></div></Rv></div><div style={{flex:"1 1 380px"}}><Rv><h3 style={{fontFamily:fh,fontSize:20,fontWeight:800,color:t.tx,margin:"0 0 18px"}}>Pertanyaan tentang Matematika</h3></Rv><Rv delay={0.05}><div>{faqs.map(([q,a],i)=><div key={i} style={{background:t.card,borderRadius:12,marginBottom:8,border:`1px solid ${op===i?t.p+"25":t.cb}`,overflow:"hidden",transition:"border 0.2s"}}><button onClick={()=>setOp(op===i?null:i)} style={{width:"100%",display:"flex",justifyContent:"space-between",alignItems:"center",padding:"14px 16px",background:"none",border:"none",cursor:"pointer",textAlign:"left"}}><span style={{fontFamily:fh,fontSize:13,fontWeight:600,color:op===i?t.tx:t.sub,flex:1}}>{q}</span><span style={{fontSize:16,color:t.p,transition:"transform 0.3s",transform:op===i?"rotate(45deg)":"none",fontWeight:300}}>+</span></button><div style={{maxHeight:op===i?160:0,transition:"max-height 0.3s ease",overflow:"hidden"}}><p style={{fontFamily:fb,fontSize:13,color:t.sub,lineHeight:1.7,padding:"0 16px 14px"}}>{a}</p></div></div>)}</div></Rv><Rv delay={0.1}><div style={{marginTop:12}}><a href={WA} target="_blank" rel="noreferrer" style={{fontFamily:fh,fontWeight:700,fontSize:12,color:"#fff",background:"#25D366",borderRadius:10,padding:"10px 20px",textDecoration:"none",display:"inline-flex",alignItems:"center",gap:6}}><WAIcon size={14}/> Chat WhatsApp</a></div></Rv></div></div></W></section>;}

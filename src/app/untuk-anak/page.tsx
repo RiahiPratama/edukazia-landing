@@ -149,8 +149,8 @@ html{scroll-behavior:smooth}body{overflow-x:hidden;-webkit-font-smoothing:antial
   .grid-2{grid-template-columns:1fr!important}
   .grid-3{grid-template-columns:1fr!important}
   .grid-4{grid-template-columns:repeat(2,1fr)!important}
-  .hero-flex{flex-direction:column!important;text-align:center!important}
-  .hero-right{display:none!important}
+  .hero-flex{flex-direction:column!important;text-align:center!important;gap:20px!important}.hero-flex>div:first-child{flex:0 1 auto!important;width:100%!important}
+  .hero-right{display:block!important;flex:0 0 auto!important;width:100%!important;max-width:340px!important;margin:0 auto!important;position:relative!important;overflow:visible!important}.hero-right>div{width:100%!important;max-width:100%!important}
   .story-flex{flex-direction:column!important}
   .courses-layout{grid-template-columns:1fr!important;grid-template-rows:auto!important}
   .courses-illust{display:none!important}
@@ -205,7 +205,7 @@ function Nav({isDark,toggle}){
               )}
             </div>
           ))}
-          <button onClick={toggle} style={{width:36,height:36,borderRadius:10,background:t.pS,border:`1px solid ${t.cb}`,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",marginLeft:8}} title={isDark?"Mode Terang":"Mode Gelap"}>
+          <button onClick={toggle} style={{width:36,height:36,borderRadius:10,background:t.pS,border:`1.5px solid ${t.m==="dark"?"rgba(255,255,255,0.18)":"rgba(92,79,229,0.28)"}`, boxShadow:t.m==="dark"?"0 2px 8px rgba(0,0,0,0.3)":"0 1px 3px rgba(0,0,0,0.08)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",marginLeft:8}} title={isDark?"Mode Terang":"Mode Gelap"}>
             {isDark?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={t.tx} strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
             :<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={t.tx} strokeWidth="2" strokeLinecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>}
           </button>
@@ -215,11 +215,11 @@ function Nav({isDark,toggle}){
         {/* Mobile: login + toggle + hamburger */}
         <div className="mobile-menu-btn" style={{display:"none",alignItems:"center",gap:8}}>
           <a href="https://app.edukazia.com" style={{fontFamily:fh,fontWeight:700,fontSize:11,color:"#fff",background:t.cta,borderRadius:10,padding:"8px 14px",textDecoration:"none",whiteSpace:"nowrap"}}>Login ke Portal</a>
-          <button onClick={toggle} style={{width:36,height:36,borderRadius:10,background:t.pS,border:`1px solid ${t.cb}`,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
+          <button onClick={toggle} style={{width:36,height:36,borderRadius:10,background:t.pS,border:`1.5px solid ${t.m==="dark"?"rgba(255,255,255,0.18)":"rgba(92,79,229,0.28)"}`, boxShadow:t.m==="dark"?"0 2px 8px rgba(0,0,0,0.3)":"0 1px 3px rgba(0,0,0,0.08)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
             {isDark?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={t.tx} strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
             :<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={t.tx} strokeWidth="2" strokeLinecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>}
           </button>
-          <button onClick={()=>setMob(m=>!m)} style={{width:36,height:36,borderRadius:10,background:t.pS,border:`1px solid ${t.cb}`,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
+          <button onClick={()=>setMob(m=>!m)} style={{width:36,height:36,borderRadius:10,background:t.pS,border:`1.5px solid ${t.m==="dark"?"rgba(255,255,255,0.18)":"rgba(92,79,229,0.28)"}`, boxShadow:t.m==="dark"?"0 2px 8px rgba(0,0,0,0.3)":"0 1px 3px rgba(0,0,0,0.08)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={t.tx} strokeWidth="2" strokeLinecap="round">
               {mob ? <><path d="M18 6L6 18"/><path d="M6 6l12 12"/></> : <><path d="M3 12h18"/><path d="M3 6h18"/><path d="M3 18h18"/></>}
             </svg>

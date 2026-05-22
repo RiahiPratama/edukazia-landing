@@ -69,7 +69,7 @@ function Nav({ isDark, toggle }: { isDark: boolean; toggle: () => void }) {
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <button onClick={toggle} aria-label="Toggle dark mode" style={{
             width: 36, height: 36, borderRadius: 10, background: t.pS,
-            border: `1px solid ${t.cb}`, cursor: "pointer",
+            border:`1.5px solid ${t.m==="dark"?"rgba(255,255,255,0.18)":"rgba(92,79,229,0.28)"}`, boxShadow:t.m==="dark"?"0 2px 8px rgba(0,0,0,0.3)":"0 1px 3px rgba(0,0,0,0.08)", cursor: "pointer",
             display: "flex", alignItems: "center", justifyContent: "center",
           }}>
             {isDark ? (
