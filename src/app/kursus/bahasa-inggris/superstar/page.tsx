@@ -3,7 +3,7 @@
 "use client";
 
 import { useState, useEffect, useRef, createContext, useContext, Fragment } from "react";
-import { AudioLines, BookOpen, Flame, Globe, GraduationCap, MessageCircle, Mic, Puzzle, Sprout, Zap } from "lucide-react";
+import { AudioLines, BookOpen, ChevronDown, Flame, Globe, GraduationCap, MessageCircle, Mic, Puzzle, Sprout, Zap } from "lucide-react";
 
 const TX = createContext();
 const useT = () => useContext(TX);
@@ -100,7 +100,7 @@ function Hero(){
   const steps=["Phonemic\nAwareness","Phonics","Spoken\nEnglish"];
   useEffect(()=>{const i=setInterval(()=>setActiveStep(p=>(p+1)%3),2500);return()=>clearInterval(i);},[]);
 
-  return <section style={{background:"linear-gradient(160deg,#1A1535 0%,#2D2560 30%,#1A1535 60%,#2A1C0E 100%)",paddingTop:130,paddingBottom:80,position:"relative",overflow:"hidden"}}>
+  return <section className="superstar-hero" style={{background:"linear-gradient(160deg,#1A1535 0%,#2D2560 30%,#1A1535 60%,#2A1C0E 100%)",paddingTop:160,paddingBottom:80,position:"relative",overflow:"hidden"}}>
     {[{top:"12%",left:"5%",s:8,d:2},{top:"20%",right:"8%",s:6,d:3},{top:"55%",left:"12%",s:5,d:1.5},{top:"70%",right:"18%",s:7,d:2.5},{top:"85%",left:"6%",s:4,d:3.5}].map((st,i)=>
       <div key={i} style={{position:"absolute",top:st.top,left:st.left,right:st.right,animation:`twinkle ${st.d+2}s ease-in-out infinite`,animationDelay:`${st.d}s`}}><Star size={st.s} color="#E6B800" style={{opacity:0.3}}/></div>
     )}
@@ -113,17 +113,26 @@ function Hero(){
         <div style={{flex:"1 1 480px"}}>
           <Rv>
             <div style={{fontFamily:fb,fontSize:13,fontWeight:700,color:"#E6B800",background:"rgba(230,184,0,0.08)",padding:"6px 20px",borderRadius:100,display:"inline-flex",alignItems:"center",gap:8,marginBottom:24,border:"1px solid rgba(230,184,0,0.15)"}}>
-              <Star size={12} color="#E6B800"/> by EduKazia · Anak & Remaja
+              <Star size={12} color="#E6B800"/> Program Unggulan EduKazia
             </div>
           </Rv>
           <Rv delay={0.08}>
-            <h1 style={{fontFamily:fh,fontSize:50,fontWeight:800,color:"#fff",lineHeight:1.08,letterSpacing:-1.5,margin:"0 0 12px"}}>
-              English<br/><span style={{background:"linear-gradient(90deg,#E6B800,#FFD700,#E6B800)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>Superstar</span>
+            <h1 style={{fontFamily:fh,fontSize:46,fontWeight:800,color:"#fff",lineHeight:1.1,letterSpacing:-1.2,margin:"0 0 16px"}}>
+              Anak Les Bertahun-tahun,<br/><span style={{background:"linear-gradient(90deg,#E6B800,#FFD700,#E6B800)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>Masih Takut Ngomong?</span>
             </h1>
           </Rv>
           <Rv delay={0.12}>
-            <p style={{fontFamily:fh,fontSize:18,fontWeight:600,color:"rgba(255,255,255,0.45)",lineHeight:1.4,marginBottom:20}}>Bunyi huruf → baca lancar → ngomong percaya diri.</p>
-            <p style={{fontFamily:fb,fontSize:15,color:"rgba(255,255,255,0.3)",lineHeight:1.7,margin:"0 0 28px",maxWidth:420}}>Program terstruktur: Phonemic Awareness → Phonics → 7 level Speaking. Fondasi dulu, baru naik. Bukan sekedar les.</p>
+            <p style={{fontFamily:fh,fontSize:18,fontWeight:600,color:"rgba(255,255,255,0.55)",lineHeight:1.5,marginBottom:16}}>English Superstar bangun fondasi yang benar — bukan langsung grammar drill.</p>
+            <p style={{fontFamily:fb,fontSize:14,color:"rgba(255,255,255,0.35)",lineHeight:1.7,margin:"0 0 24px",maxWidth:440}}>Program 3 tahap khusus anak & remaja: bunyi huruf → baca lancar → speaking percaya diri. Bukan hafalan vocab, tapi pemahaman yang melekat.</p>
+          </Rv>
+          <Rv delay={0.14}>
+            <div style={{display:"flex",flexWrap:"wrap",gap:8,marginBottom:28}}>
+              {["Standar CEFR","Phonics System","Anak 6–17 thn"].map(b=>
+                <div key={b} style={{fontFamily:fb,fontSize:11,fontWeight:600,color:"rgba(255,255,255,0.5)",background:"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.08)",padding:"5px 12px",borderRadius:100,display:"inline-flex",alignItems:"center",gap:5}}>
+                  <span style={{color:"#E6B800",fontSize:10}}>✓</span> {b}
+                </div>
+              )}
+            </div>
           </Rv>
           <Rv delay={0.16}>
             <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
@@ -208,15 +217,18 @@ function KidsBubbles(){
     {text:"I LOVE MY LESSONS! 💕",c:"#FCE7F3",tc:"#9D174D",rot:-0.5,x:"18%",y:148,gender:"girl"},
     {text:"Super cool and funny! 😂",c:"#E0E7FF",tc:"#3730A3",rot:1.5,x:"54%",y:144,gender:"boy"},
   ];
-  return <section style={{background:t.bg,padding:"60px 0 40px",overflow:"hidden"}}><W>
-    <Rv><div style={{textAlign:"center",marginBottom:16}}>
+  const photoColors = ["#EC4899","#3B82F6","#F59E0B","#10B981","#8B7FF5","#EC4899","#F59E0B","#3B82F6"];
+
+  return <section className="kids-bubbles-section" style={{background:t.bg,padding:"40px 0",overflow:"hidden"}}><W>
+    <Rv><div className="superstar-section-header" style={{textAlign:"center",marginBottom:24}}>
       <h2 style={{fontFamily:fh,fontSize:32,fontWeight:800,color:t.tx,margin:0}}>Anak-Anak Ini Sudah Merasakannya</h2>
+      <p style={{fontFamily:fb,fontSize:14,color:t.sub,marginTop:8,lineHeight:1.6}}>Suara polos dari anak yang sudah belajar bersama kami.</p>
     </div></Rv>
+
+    {/* DESKTOP — Floating absolute positioning */}
     <Rv delay={0.1}>
-      <div style={{position:"relative",height:220,maxWidth:900,margin:"0 auto"}}>
+      <div className="bubbles-desktop" style={{position:"relative",height:220,maxWidth:900,margin:"0 auto"}}>
         {bubbles.map((b,i)=>{
-          const photoColors = ["#EC4899","#3B82F6","#F59E0B","#10B981","#8B7FF5","#EC4899","#F59E0B","#3B82F6"];
-          // Photo on left or right alternating
           const photoLeft = i%2===0;
           return <div key={i} style={{
             position:"absolute",left:b.x,top:b.y,
@@ -226,11 +238,9 @@ function KidsBubbles(){
             animation:`float ${4+i*0.5}s ease-in-out infinite`,
             animationDelay:`${i*0.3}s`,
           }}>
-            {/* Photo placeholder */}
             <div style={{width:28,height:28,borderRadius:"50%",background:`${photoColors[i]}20`,border:`2px solid ${photoColors[i]}40`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,overflow:"hidden"}}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill={photoColors[i]} opacity="0.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
             </div>
-            {/* Bubble */}
             <div style={{
               background:t.m==="dark"?`${b.tc}15`:b.c,
               borderRadius:photoLeft?"16px 16px 16px 6px":"16px 16px 6px 16px",
@@ -238,12 +248,37 @@ function KidsBubbles(){
               boxShadow:"0 2px 12px rgba(0,0,0,0.04)",
               whiteSpace:"nowrap",
             }}>
-              <span style={{fontFamily:fb,fontSize:13,fontWeight:700,color:t.m==="dark"?b.tc:b.tc,lineHeight:1}}>{b.text}</span>
+              <span style={{fontFamily:fb,fontSize:13,fontWeight:700,color:b.tc,lineHeight:1}}>{b.text}</span>
             </div>
           </div>;
         })}
       </div>
     </Rv>
+
+    {/* MOBILE — Chat-style alternating left/right stack */}
+    <div className="bubbles-mobile" style={{maxWidth:480,margin:"0 auto",display:"flex",flexDirection:"column",gap:18,padding:"0 8px"}}>
+      {bubbles.map((b,i)=>{
+        const isLeft = i%2===0;
+        return <Rv key={i} delay={0.05*i}>
+          <div style={{display:"flex",justifyContent:isLeft?"flex-start":"flex-end",width:"100%"}}>
+            <div style={{display:"flex",alignItems:"center",gap:8,flexDirection:isLeft?"row":"row-reverse",maxWidth:"85%"}}>
+              <div style={{width:32,height:32,borderRadius:"50%",background:`${photoColors[i]}20`,border:`2px solid ${photoColors[i]}40`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,overflow:"hidden"}}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill={photoColors[i]} opacity="0.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
+              </div>
+              <div style={{
+                background:t.m==="dark"?`${b.tc}15`:b.c,
+                borderRadius:isLeft?"18px 18px 18px 6px":"18px 18px 6px 18px",
+                padding:"10px 18px",
+                boxShadow:"0 2px 12px rgba(0,0,0,0.04)",
+                transform:`rotate(${b.rot*0.5}deg)`,
+              }}>
+                <span style={{fontFamily:fb,fontSize:13,fontWeight:700,color:b.tc,lineHeight:1.4,whiteSpace:"nowrap"}}>{b.text}</span>
+              </div>
+            </div>
+          </div>
+        </Rv>;
+      })}
+    </div>
   </W></section>;
 }
 
@@ -403,7 +438,7 @@ function Journey(){
   const ph = phases[activePhase];
 
   return <section id="journey" style={{background:t.bg,padding:"80px 0"}}><W>
-    <Rv><div style={{textAlign:"center",marginBottom:52}}>
+    <Rv><div className="superstar-section-header" style={{textAlign:"center",marginBottom:52}}>
       <h2 style={{fontFamily:fh,fontSize:38,fontWeight:800,color:t.tx,margin:0,letterSpacing:-0.5}}>Perjalanan Jadi Superstar</h2>
       <p style={{fontFamily:fb,fontSize:15,color:t.sub,marginTop:10,lineHeight:1.7}}>Fondasi dulu, baru speaking. Tidak lompat-lompat.</p>
     </div></Rv>
@@ -418,7 +453,7 @@ function Journey(){
           <path d={activePhase>=1?"M145 230 Q220 200 380 160"+(activePhase>=2?" Q540 120 750 60":""):"M145 230 Q180 215 220 205"} stroke={phases[activePhase].cHex} strokeWidth="2.5" fill="none" opacity="0.4"/>
         </svg>
 
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:16,position:"relative",zIndex:1}}>
+        <div className="journey-grid" style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:16,position:"relative",zIndex:1}}>
           {phases.map((phx,i)=>{
             const active = activePhase===i;
             const stepOffsets = [80,36,0]; // descending margin-top = ascending visual
@@ -434,7 +469,7 @@ function Journey(){
             ];
             const activeTextC = "#fff";
 
-            return <div key={i} style={{marginTop:stepOffsets[i]}} className={i>0?"":""}> 
+            return <div key={i} className="journey-card-offset" style={{marginTop:stepOffsets[i]}}> 
               {/* Step number badge */}
               <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:8,paddingLeft:4}}>
                 <div style={{width:22,height:22,borderRadius:"50%",background:active?activeBgs[i]:defaultBgs[i],display:"flex",alignItems:"center",justifyContent:"center",fontFamily:fh,fontSize:10,fontWeight:800,color:"#fff",boxShadow:`0 2px 8px ${phx.cHex}30`}}>{i+1}</div>
@@ -462,9 +497,9 @@ function Journey(){
                     {phx.icon==="mic"&&<Mic size={22} color={active?activeTextC:"#fff"}/>}
                   </div>
                   <div style={{fontFamily:fh,fontSize:16,fontWeight:800,color:active?activeTextC:"#fff",transition:"color 0.3s",marginBottom:6,lineHeight:1.2}}>{phx.name}</div>
-                  {phx.badge && <div style={{fontFamily:fb,fontSize:7,fontWeight:700,color:"#fff",background:"rgba(255,255,255,0.2)",padding:"3px 10px",borderRadius:5,display:"inline-block",letterSpacing:0.3,backdropFilter:"blur(4px)"}}>{phx.badge}</div>}
+                  {phx.badge && <div style={{fontFamily:fb,fontSize:11,fontWeight:700,color:"#fff",background:"rgba(255,255,255,0.2)",padding:"5px 12px",borderRadius:6,display:"inline-block",letterSpacing:0.3,backdropFilter:"blur(4px)"}}>{phx.badge}</div>}
                   <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginTop:10}}>
-                    <span style={{fontFamily:fb,fontSize:9,fontWeight:600,color:"rgba(255,255,255,0.45)"}}>{active?"Sedang dilihat ✦":"Klik untuk lihat"}</span>
+                    <span style={{fontFamily:fb,fontSize:12,fontWeight:600,color:"rgba(255,255,255,0.65)"}}>{active?"Sedang dilihat ✦":"Klik untuk lihat"}</span>
                     <div style={{width:20,height:20,borderRadius:6,background:"rgba(255,255,255,0.15)",display:"flex",alignItems:"center",justifyContent:"center"}}>
                       {active?<svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l1.5 1.5 3.5-3.5" stroke={activeTextC} strokeWidth="1.5" strokeLinecap="round"/></svg>
                       :<svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M2.5 1.5L5.5 4L2.5 6.5" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/></svg>}
@@ -580,7 +615,7 @@ function Stories(){
   const s = stories[ac];
 
   return <section style={{background:t.bg,padding:"80px 0"}}><W>
-    <Rv><div style={{textAlign:"center",marginBottom:44}}>
+    <Rv><div className="superstar-section-header" style={{textAlign:"center",marginBottom:44}}>
       <h2 style={{fontFamily:fh,fontSize:36,fontWeight:800,color:t.tx,margin:0,letterSpacing:-0.5}}>Cerita Para Superstar</h2>
     </div></Rv>
     <Rv delay={0.1}>
@@ -620,7 +655,7 @@ function ClassTypes(){
      avail:["✓","✓","✓"],tags:["Perhatian penuh","Reschedule gratis","Koreksi individual"]},
   ];
   return <section style={{background:t.bg,padding:"80px 0"}}><W>
-    <Rv><div style={{textAlign:"center",marginBottom:44}}>
+    <Rv><div className="superstar-section-header" style={{textAlign:"center",marginBottom:44}}>
       <h2 style={{fontFamily:fh,fontSize:36,fontWeight:800,color:t.tx,margin:0,letterSpacing:-0.5}}>Pilih Tipe Kelas</h2>
       <p style={{fontFamily:fb,fontSize:15,color:t.sub,marginTop:10,lineHeight:1.7}}>Semua program tersedia di semua tipe kelas. Pilih sesuai kebutuhan dan budget.</p>
     </div></Rv>
@@ -682,7 +717,20 @@ function TesLevelAndFAQ(){
       </div>
       <div style={{flex:"1 1 380px"}}>
         <Rv><h3 style={{fontFamily:fh,fontSize:20,fontWeight:800,color:t.tx,margin:"0 0 18px"}}>Pertanyaan tentang English Superstar</h3></Rv>
-        <Rv delay={0.05}><div>{faqs.map(([q,a],i)=><div key={i} style={{background:t.card,borderRadius:12,marginBottom:8,border:`1px solid ${op===i?t.p+"25":t.cb}`,overflow:"hidden",transition:"border 0.2s"}}><button onClick={()=>setOp(op===i?null:i)} style={{width:"100%",display:"flex",justifyContent:"space-between",alignItems:"center",padding:"14px 16px",background:"none",border:"none",cursor:"pointer",textAlign:"left"}}><span style={{fontFamily:fh,fontSize:13,fontWeight:600,color:op===i?t.tx:t.sub,flex:1}}>{q}</span><span style={{fontSize:16,color:t.p,transition:"transform 0.3s",transform:op===i?"rotate(45deg)":"none",fontWeight:300}}>+</span></button><div style={{maxHeight:op===i?160:0,transition:"max-height 0.3s ease",overflow:"hidden"}}><p style={{fontFamily:fb,fontSize:13,color:t.sub,lineHeight:1.7,padding:"0 16px 14px"}}>{a}</p></div></div>)}</div></Rv>
+        <Rv delay={0.05}><div>{faqs.map(([q,a],i)=>{
+          const isOpen = op===i;
+          return <div key={i} style={{background:t.card,borderRadius:14,marginBottom:10,border:`1px solid ${isOpen?t.p+"35":t.cb}`,overflow:"hidden",transition:"border 0.3s ease, box-shadow 0.3s ease",boxShadow:isOpen?`0 4px 16px ${t.p}10`:"none"}}>
+            <button onClick={()=>setOp(isOpen?null:i)} style={{width:"100%",display:"flex",justifyContent:"space-between",alignItems:"center",gap:12,padding:"16px 18px",background:"none",border:"none",cursor:"pointer",textAlign:"left"}}>
+              <span style={{fontFamily:fh,fontSize:13,fontWeight:isOpen?700:600,color:isOpen?t.tx:t.sub,flex:1,transition:"color 0.3s ease, font-weight 0.3s ease"}}>{q}</span>
+              <span style={{display:"flex",alignItems:"center",justifyContent:"center",width:24,height:24,borderRadius:8,background:isOpen?`${t.p}15`:"transparent",color:t.p,transition:"transform 0.35s cubic-bezier(0.4,0,0.2,1), background 0.3s ease",transform:isOpen?"rotate(180deg)":"none",flexShrink:0}}>
+                <ChevronDown size={16}/>
+              </span>
+            </button>
+            <div style={{maxHeight:isOpen?300:0,opacity:isOpen?1:0,transition:"max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease",overflow:"hidden"}}>
+              <p style={{fontFamily:fb,fontSize:13,color:t.sub,lineHeight:1.7,padding:"0 18px 16px",margin:0}}>{a}</p>
+            </div>
+          </div>;
+        })}</div></Rv>
         <Rv delay={0.1}><div style={{marginTop:12}}><a href={WA} target="_blank" rel="noreferrer" style={{fontFamily:fh,fontWeight:700,fontSize:12,color:"#fff",background:"#25D366",borderRadius:10,padding:"10px 20px",textDecoration:"none",display:"inline-flex",alignItems:"center",gap:6}}><WAIcon size={14}/> Chat WhatsApp</a></div></Rv>
       </div>
     </div>
@@ -716,7 +764,7 @@ function WAFloat(){return <a href={WA} target="_blank" rel="noreferrer" style={{
 
 export default function EnglishSuperstar(){
   const[isDark,setIsDark]=useState(false);const t=isDark?D:L;
-  return <TX.Provider value={t}><div style={{background:t.bg,minHeight:"100vh",transition:"background 0.3s"}}>
+  return <TX.Provider value={t}><div className="superstar-page" style={{background:t.bg,minHeight:"100vh",transition:"background 0.3s"}}>
     <style>{animations}</style>
     <style>{`body{background:${t.bg};transition:background 0.3s}`}</style>
     <Nav isDark={isDark} toggle={()=>setIsDark(d=>!d)}/>

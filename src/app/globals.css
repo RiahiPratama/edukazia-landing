@@ -18,14 +18,12 @@
 
 html {
   scroll-behavior: smooth;
-  /* Safety net: prevent any horizontal overflow propagating to viewport.
-     Using `clip` instead of `hidden` because `hidden` creates a new scroll
-     container that BREAKS position:sticky on all descendants (e.g. FAQ left col). */
-  overflow-x: clip;
+  /* Safety net: prevent any horizontal overflow propagating to viewport */
+  overflow-x: hidden;
 }
 
 body {
-  overflow-x: clip;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
@@ -207,11 +205,10 @@ a:focus-visible {
     margin-bottom: -100px;
   }
 
-  /* Extra safety: semua section explicitly contained ke viewport width.
-     `clip` (bukan `hidden`) supaya tidak break position:sticky di dalam section. */
+  /* Extra safety: semua section explicitly contained ke viewport width */
   section {
     max-width: 100vw;
-    overflow-x: clip;
+    overflow-x: hidden;
   }
 
   /* MarqueeStrip mobile: shrink semua sizes proportionally.
@@ -288,11 +285,122 @@ a:focus-visible {
     border-left: none !important;
     border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
   }
+
+  /* ═══ SUPERSTAR PAGE — Mobile fixes ═══ */
+
+  /* Hero — extra padding top di mobile (avoid navbar overlap) */
+  .superstar-hero {
+    padding-top: 180px !important;
+    padding-bottom: 50px !important;
+  }
+  .superstar-hero h1 {
+    font-size: 34px !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.8px !important;
+  }
+  .superstar-hero .hero-flex {
+    gap: 32px !important;
+  }
+  .superstar-hero .hero-right {
+    flex: 1 1 100% !important;
+  }
+
+  /* Journey — STAIR pattern preserved di mobile, smaller offsets + tighter content */
+  .journey-grid {
+    grid-template-columns: 1fr 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  /* Reduced stair offsets (62% of desktop) */
+  .journey-card-offset:nth-child(1) {
+    margin-top: 50px !important;
+  }
+  .journey-card-offset:nth-child(2) {
+    margin-top: 22px !important;
+  }
+  .journey-card-offset:nth-child(3) {
+    margin-top: 0 !important;
+  }
+  /* Card body container - reduce internal padding */
+  .journey-grid .journey-card-offset > div:nth-child(2) {
+    padding: 14px 12px !important;
+    border-radius: 16px !important;
+  }
+  /* Icon container - smaller */
+  .journey-grid .journey-card-offset > div:nth-child(2) > div > div:first-child {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 9px !important;
+    margin-bottom: 6px !important;
+  }
+  /* Card title (Phonemic Awareness / Phonics / Spoken English) */
+  .journey-grid .journey-card-offset > div:nth-child(2) > div > div:nth-of-type(2) {
+    font-size: 13px !important;
+    margin-bottom: 4px !important;
+    line-height: 1.15 !important;
+  }
+  /* Badge (Standar Sekolah / CEFR-BASED) - wrap and smaller */
+  .journey-card-offset div[style*="rgba(255,255,255,0.2)"] {
+    white-space: normal !important;
+    font-size: 9px !important;
+    padding: 3px 7px !important;
+    line-height: 1.3 !important;
+    text-align: center !important;
+    letter-spacing: 0 !important;
+  }
+  /* Footer label */
+  .journey-grid .journey-card-offset > div:nth-child(2) > div > div:last-child span {
+    font-size: 10px !important;
+  }
+  /* Step number badge wrapper */
+  .journey-card-offset > div:first-child {
+    padding-left: 2px !important;
+    margin-bottom: 6px !important;
+  }
+  /* "FONDASI AWAL" label */
+  .journey-card-offset > div:first-child > div:last-child {
+    font-size: 8px !important;
+    letter-spacing: 0.3px !important;
+  }
+
+  /* KidsBubbles — show mobile stack, hide desktop floating */
+  .bubbles-desktop {
+    display: none !important;
+  }
+  .bubbles-mobile {
+    display: flex !important;
+  }
+
+  /* Superstar page — VERY TIGHT section spacing di mobile (gap antar section minimal) */
+  .superstar-page section:not(.superstar-hero) {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+
+  /* Section headers — TIGHT margin-bottom (close headline ke content) */
+  .superstar-section-header {
+    margin-bottom: 14px !important;
+  }
+
+  /* H2 di mobile — sedikit lebih kecil supaya fit dan less dominant */
+  .superstar-page h2 {
+    font-size: 24px !important;
+    line-height: 1.2 !important;
+  }
+  .superstar-section-header p {
+    font-size: 13px !important;
+    margin-top: 6px !important;
+  }
 }
 
-/* DESKTOP — >= 769px (hide mobile menu button) */
+/* DESKTOP — >= 769px */
 @media (min-width: 769px) {
+  /* Hide mobile menu button */
   .mobile-menu-btn {
+    display: none !important;
+  }
+
+  /* Show floating bubbles, hide mobile stack (Superstar page) */
+  .bubbles-mobile {
     display: none !important;
   }
 }
