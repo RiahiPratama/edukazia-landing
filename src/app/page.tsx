@@ -11,7 +11,7 @@
  *   4. Fasilitas     — 3 fasilitas LMS (Rekaman, Portal Ortu, Portal Siswa)
  *   5. PrivatSection — Showcase kelas privat 1-on-1 (highest value)
  *   6. OtherClasses  — Reguler & Semi Privat
- *   7. Testimonials  — Cerita keluarga carousel
+ *   7. Testimonials  — [HIDDEN] Re-enable when admin dashboard supports input
  *   8. FAQ           — 12 FAQ + Maneki Neko
  *   9. CTA           — Final call to action gradient
  */
@@ -26,7 +26,7 @@ import { Subjects } from "@/components/sections/Subjects"
 import { Fasilitas } from "@/components/sections/Fasilitas"
 import { PrivatSection } from "@/components/sections/PrivatSection"
 import { OtherClasses } from "@/components/sections/OtherClasses"
-import { Testimonials } from "@/components/sections/Testimonials"
+// import { Testimonials } from "@/components/sections/Testimonials" // TODO: Re-enable with admin dashboard
 import { FAQ } from "@/components/sections/FAQ"
 import { CTA } from "@/components/sections/CTA"
 
@@ -42,7 +42,9 @@ export default function HomePage() {
         <Fasilitas />
         <PrivatSection />
         <OtherClasses />
+        {/* TODO: Re-enable when admin dashboard supports testimoni input
         <Testimonials />
+        */}
         <FAQ />
         <CTA />
       </main>

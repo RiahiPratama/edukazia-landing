@@ -87,7 +87,7 @@ const FAQS: FAQItem[] = [
   {
     question: "Bagaimana cara mendaftar?",
     answer:
-      "Chat WhatsApp → Tes Level → pilih pelajaran & tipe kelas → mulai belajar. Tidak ada kontrak, tidak ada biaya pendaftaran.",
+      "Chat WhatsApp → Tes Level → pilih pelajaran & tipe kelas → mulai belajar.",
   },
 ]
 
@@ -231,7 +231,15 @@ export function FAQ() {
           style={{ display: "flex", gap: 48, flexWrap: "wrap", alignItems: "flex-start" }}
         >
           {/* LEFT — Sticky header + Maneki Neko */}
-          <div style={{ flex: "1 1 300px", position: "sticky", top: 100 }}>
+          <div
+            style={{
+              flex: "1 1 300px",
+              position: "sticky",
+              top: 100,
+              alignSelf: "flex-start",
+              height: "fit-content",
+            }}
+          >
             <RevealOnScroll>
               <div
                 style={{

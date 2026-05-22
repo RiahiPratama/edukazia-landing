@@ -54,7 +54,7 @@ function StripContent() {
       </Item>
       <Item size={22}>
         <BookOpen size={18} color="#fff" />
-        150+ Siswa Aktif dari Maluku Utara
+        80+ Siswa Aktif dari Maluku Utara
       </Item>
       <Item size={16}>
         <BookOpen size={14} color="#fff" />

@@ -392,7 +392,7 @@ export function Hero() {
             transition: "all 1s cubic-bezier(0.22,1,0.36,1) 0.2s",
             position: "relative",
             top: 0,
-            alignSelf: "flex-start",
+            alignSelf: "flex-end",
             paddingTop: 20,
           }}
         >

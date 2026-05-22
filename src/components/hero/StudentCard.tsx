@@ -26,13 +26,13 @@ import { useT, fh, fb } from "@/lib/theme"
 import { useCounter } from "@/hooks/useCounter"
 
 export type StudentCardProps = {
-  /** Target student count. Default: 150 */
+  /** Target student count. Default: 80 */
   count?: number
   /** Show "+" suffix after number. Default: true */
   showPlus?: boolean
   /** Primary label below count. Default: "Siswa Aktif" */
   label?: string
-  /** Secondary smaller label. Default: "di seluruh Indonesia" */
+  /** Secondary smaller label. Default: "dari Maluku Utara" */
   sublabel?: string
   /** Emoji or icon to right side. Default: graduation cap */
   icon?: string
@@ -47,10 +47,10 @@ export type StudentCardProps = {
 }
 
 export function StudentCard({
-  count = 150,
+  count = 80,
   showPlus = true,
   label = "Siswa Aktif",
-  sublabel = "di seluruh Indonesia",
+  sublabel = "dari Maluku Utara",
   icon = "🎓",
   width = 180,
   tilt = 0,
