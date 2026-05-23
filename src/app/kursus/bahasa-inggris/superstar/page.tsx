@@ -110,8 +110,8 @@ html{scroll-behavior:smooth}body{overflow-x:hidden;-webkit-font-smoothing:antial
   .desktop-menu{display:none!important}.mobile-menu-btn{display:flex!important}
   .hide-mobile{display:none!important}.grid-2{grid-template-columns:1fr!important}
   .grid-3{grid-template-columns:1fr!important}
-  .hero-flex{flex-direction:column!important;text-align:center!important}
-  .hero-right{display:block!important;flex:1 1 auto!important;width:100%!important;max-width:340px!important;margin:28px auto 0!important;position:relative!important;overflow:visible!important}.hero-right>div{width:100%!important;max-width:100%!important}.story-flex{flex-direction:column!important}
+  .hero-flex{flex-direction:column!important;text-align:center!important;gap:20px!important}.hero-flex>div:first-child{flex:0 1 auto!important;width:100%!important}
+  .hero-right{display:block!important;flex:0 0 auto!important;width:100%!important;max-width:340px!important;margin:0 auto!important;position:relative!important;overflow:visible!important}.hero-right>div{width:100%!important;max-width:100%!important}.story-flex{flex-direction:column!important}
 }
 @media(min-width:769px){.mobile-menu-btn{display:none!important}}
 @keyframes bubblePopIn{0%{opacity:0;transform:scale(0.7) translateY(8px)}60%{transform:scale(1.04) translateY(0)}100%{opacity:1;transform:scale(1) translateY(0)}}
@@ -294,13 +294,14 @@ function KidsBubbles(){
               <KidAvatar variant={i} size={32} bgColor={`${photoColors[i]}25`}/>
             </div>
             <div style={{
-              background:t.m==="dark"?`${b.tc}15`:b.c,
+              background:t.m==="dark"?`${b.tc}30`:b.c,
+              border:t.m==="dark"?`1px solid ${b.tc}55`:"1px solid transparent",
               borderRadius:photoLeft?"16px 16px 16px 6px":"16px 16px 6px 16px",
               padding:"8px 16px",
-              boxShadow:"0 2px 12px rgba(0,0,0,0.04)",
+              boxShadow:t.m==="dark"?`0 2px 14px ${b.tc}35`:"0 2px 12px rgba(0,0,0,0.04)",
               whiteSpace:"nowrap",
             }}>
-              <span style={{fontFamily:fb,fontSize:13,fontWeight:700,color:b.tc,lineHeight:1}}>{b.text}</span>
+              <span style={{fontFamily:fb,fontSize:13,fontWeight:700,color:t.m==="dark"?b.c:b.tc,lineHeight:1}}>{b.text}</span>
             </div>
           </div>;
         })}
@@ -320,13 +321,14 @@ function KidsBubbles(){
                 <KidAvatar variant={i} size={36} bgColor={`${photoColors[i]}25`}/>
               </div>
               <div style={{
-                background:t.m==="dark"?`${b.tc}15`:b.c,
+                background:t.m==="dark"?`${b.tc}30`:b.c,
+                border:t.m==="dark"?`1px solid ${b.tc}55`:"1px solid transparent",
                 borderRadius:isLeft?"18px 18px 18px 6px":"18px 18px 6px 18px",
                 padding:"10px 18px",
-                boxShadow:"0 2px 12px rgba(0,0,0,0.04)",
+                boxShadow:t.m==="dark"?`0 2px 14px ${b.tc}35`:"0 2px 12px rgba(0,0,0,0.04)",
                 transform:`rotate(${b.rot*0.5}deg)`,
               }}>
-                <span style={{fontFamily:fb,fontSize:13,fontWeight:700,color:b.tc,lineHeight:1.4,whiteSpace:"nowrap"}}>{b.text}</span>
+                <span style={{fontFamily:fb,fontSize:13,fontWeight:700,color:t.m==="dark"?b.c:b.tc,lineHeight:1.4,whiteSpace:"nowrap"}}>{b.text}</span>
               </div>
             </div>
           </div>;
